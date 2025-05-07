@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6E6DE5AD-2691-40B3-81E6-035DA6B3CC30}</ProjectGuid>
+    <ProjectGuid>{BD3A1404-2095-42BE-B7E6-9506B418C7B9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>PimPomBro</RootNamespace>
     <AssemblyName>PimPomBro</AssemblyName>
