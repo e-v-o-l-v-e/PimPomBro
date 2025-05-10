@@ -10,7 +10,13 @@ Différents volets :
 TP3, groupe :
 
 - Ivanoé Megnin-Preiss
-  - pdf
+  - [ ] gestion personnel
 - Elora Fouilleul
 - Fella Bennounas
   - [ ] Volet transaction
+
+
+question iva : 
+- date d'embauche = initiale ou pour la caserne ?
+- affectation passées = mis `a jours automatiquement ou textbox remplissable par l'utilisateur
+- changement d'habilitation ? liste pas editable sur votre screen
