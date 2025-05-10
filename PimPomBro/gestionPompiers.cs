@@ -16,5 +16,10 @@ namespace PimPomBro
         {
             InitializeComponent();
         }
+
+        private void gestionPompiers_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
