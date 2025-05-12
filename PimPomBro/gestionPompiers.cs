@@ -21,5 +21,12 @@ namespace PimPomBro
         {
 
         }
+
+        private void btnModifications_Click(object sender, EventArgs e)
+        {
+            btnModifications.Visible = false;
+            btnChanger.Visible = true;
+            pnlInformationsDetaillees.Visible = true;
+        }
     }
 }

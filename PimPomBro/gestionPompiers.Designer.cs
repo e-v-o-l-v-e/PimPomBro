@@ -31,16 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(gestionPompiers));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.picNouveau = new System.Windows.Forms.PictureBox();
-            this.btnNouveau = new System.Windows.Forms.Button();
-            this.cboPompier = new System.Windows.Forms.ComboBox();
-            this.cboCaserne = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.pnlInformationsDetaillees = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cboCaserneDeRattachement = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.picNouveau = new System.Windows.Forms.PictureBox();
+            this.btnNouveau = new System.Windows.Forms.Button();
+            this.cboPompier = new System.Windows.Forms.ComboBox();
+            this.cboCaserne = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnModifications = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblDateDEmbauche = new System.Windows.Forms.Label();
             this.lblDateDeNaissance = new System.Windows.Forms.Label();
@@ -65,10 +66,10 @@
             this.lblNum = new System.Windows.Forms.Label();
             this.lblMatricule = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
-            this.panel2.SuspendLayout();
             this.pnlInformationsDetaillees.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
+            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.gboCarriere.SuspendLayout();
             this.SuspendLayout();
@@ -85,55 +86,11 @@
             this.panel1.Size = new System.Drawing.Size(330, 843);
             this.panel1.TabIndex = 0;
             // 
-            // picNouveau
-            // 
-            this.picNouveau.Image = ((System.Drawing.Image)(resources.GetObject("picNouveau.Image")));
-            this.picNouveau.Location = new System.Drawing.Point(108, 325);
-            this.picNouveau.Name = "picNouveau";
-            this.picNouveau.Size = new System.Drawing.Size(106, 122);
-            this.picNouveau.TabIndex = 3;
-            this.picNouveau.TabStop = false;
-            // 
-            // btnNouveau
-            // 
-            this.btnNouveau.Location = new System.Drawing.Point(108, 463);
-            this.btnNouveau.Name = "btnNouveau";
-            this.btnNouveau.Size = new System.Drawing.Size(106, 33);
-            this.btnNouveau.TabIndex = 2;
-            this.btnNouveau.Text = "Nouveau";
-            this.btnNouveau.UseVisualStyleBackColor = true;
-            // 
-            // cboPompier
-            // 
-            this.cboPompier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboPompier.FormattingEnabled = true;
-            this.cboPompier.Location = new System.Drawing.Point(29, 193);
-            this.cboPompier.Name = "cboPompier";
-            this.cboPompier.Size = new System.Drawing.Size(265, 28);
-            this.cboPompier.TabIndex = 1;
-            // 
-            // cboCaserne
-            // 
-            this.cboCaserne.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboCaserne.FormattingEnabled = true;
-            this.cboCaserne.Location = new System.Drawing.Point(29, 102);
-            this.cboCaserne.Name = "cboCaserne";
-            this.cboCaserne.Size = new System.Drawing.Size(265, 28);
-            this.cboCaserne.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.pnlInformationsDetaillees);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Location = new System.Drawing.Point(350, 13);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(563, 843);
-            this.panel2.TabIndex = 1;
-            // 
             // pnlInformationsDetaillees
             // 
+            this.pnlInformationsDetaillees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlInformationsDetaillees.Controls.Add(this.groupBox1);
-            this.pnlInformationsDetaillees.Location = new System.Drawing.Point(17, 463);
+            this.pnlInformationsDetaillees.Location = new System.Drawing.Point(17, 462);
             this.pnlInformationsDetaillees.Name = "pnlInformationsDetaillees";
             this.pnlInformationsDetaillees.Size = new System.Drawing.Size(529, 361);
             this.pnlInformationsDetaillees.TabIndex = 3;
@@ -181,8 +138,68 @@
             this.label13.TabIndex = 9;
             this.label13.Text = "Caserne de rattachement :";
             // 
+            // picNouveau
+            // 
+            this.picNouveau.Image = ((System.Drawing.Image)(resources.GetObject("picNouveau.Image")));
+            this.picNouveau.Location = new System.Drawing.Point(74, 374);
+            this.picNouveau.Name = "picNouveau";
+            this.picNouveau.Size = new System.Drawing.Size(161, 184);
+            this.picNouveau.TabIndex = 3;
+            this.picNouveau.TabStop = false;
+            // 
+            // btnNouveau
+            // 
+            this.btnNouveau.Location = new System.Drawing.Point(74, 554);
+            this.btnNouveau.Name = "btnNouveau";
+            this.btnNouveau.Size = new System.Drawing.Size(161, 45);
+            this.btnNouveau.TabIndex = 2;
+            this.btnNouveau.Text = "Nouveau";
+            this.btnNouveau.UseVisualStyleBackColor = true;
+            // 
+            // cboPompier
+            // 
+            this.cboPompier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboPompier.FormattingEnabled = true;
+            this.cboPompier.Location = new System.Drawing.Point(29, 193);
+            this.cboPompier.Name = "cboPompier";
+            this.cboPompier.Size = new System.Drawing.Size(265, 28);
+            this.cboPompier.TabIndex = 1;
+            // 
+            // cboCaserne
+            // 
+            this.cboCaserne.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCaserne.FormattingEnabled = true;
+            this.cboCaserne.Location = new System.Drawing.Point(29, 102);
+            this.cboCaserne.Name = "cboCaserne";
+            this.cboCaserne.Size = new System.Drawing.Size(265, 28);
+            this.cboCaserne.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.pnlInformationsDetaillees);
+            this.panel2.Controls.Add(this.btnModifications);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Location = new System.Drawing.Point(350, 13);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(563, 843);
+            this.panel2.TabIndex = 1;
+            // 
+            // btnModifications
+            // 
+            this.btnModifications.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModifications.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnModifications.Location = new System.Drawing.Point(156, 523);
+            this.btnModifications.Name = "btnModifications";
+            this.btnModifications.Size = new System.Drawing.Size(251, 63);
+            this.btnModifications.TabIndex = 16;
+            this.btnModifications.Text = "Plus d\'information / Modifications";
+            this.btnModifications.UseVisualStyleBackColor = true;
+            this.btnModifications.Click += new System.EventHandler(this.btnModifications_Click);
+            // 
             // panel3
             // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.lblDateDEmbauche);
             this.panel3.Controls.Add(this.lblDateDeNaissance);
             this.panel3.Controls.Add(this.lblSexe);
@@ -274,6 +291,7 @@
             this.btnChanger.TabIndex = 15;
             this.btnChanger.Text = "Changer";
             this.btnChanger.UseVisualStyleBackColor = true;
+            this.btnChanger.Visible = false;
             // 
             // lblBip
             // 
@@ -353,6 +371,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
+            this.radioButton1.Enabled = false;
             this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton1.Location = new System.Drawing.Point(173, 172);
             this.radioButton1.Name = "radioButton1";
@@ -366,6 +385,7 @@
             // rdbProfessionel
             // 
             this.rdbProfessionel.AutoSize = true;
+            this.rdbProfessionel.Enabled = false;
             this.rdbProfessionel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbProfessionel.Location = new System.Drawing.Point(37, 171);
             this.rdbProfessionel.Name = "rdbProfessionel";
@@ -438,11 +458,11 @@
             this.Text = "Gestion du Personnel";
             this.Load += new System.EventHandler(this.gestionPompiers_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).EndInit();
-            this.panel2.ResumeLayout(false);
             this.pnlInformationsDetaillees.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.gboCarriere.ResumeLayout(false);
@@ -487,5 +507,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cboCaserneDeRattachement;
+        private System.Windows.Forms.Button btnModifications;
     }
 }
