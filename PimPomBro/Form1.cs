@@ -21,6 +21,7 @@ namespace PimPomBro
         {
             gestionPompiers gestionPompiers = new gestionPompiers();
             gestionPompiers.ShowDialog();
+            Close();
         }
     }
 }
