@@ -13,6 +13,7 @@ namespace PimPomBro
 {
     public partial class gestionPompiers : Form
     {
+        bool admin = false;
         private int matricule = -1;
         string requete = "";
         SQLiteCommand cmd = null;
@@ -35,14 +36,6 @@ namespace PimPomBro
             reader.Close();
         }
 
-        private void btnModifications_Click(object sender, EventArgs e)
-        {
-            btnModifications.Visible = false;
-            pnlInformationsDetaillees.Visible = true;
-            btnChanger.Visible = true;
-            txtGrade.Enabled = true;
-        }
-
         private void cboPompier_Click(object sender, EventArgs e)
         {
             if (cboCaserne.SelectedItem == null)
@@ -53,7 +46,10 @@ namespace PimPomBro
 
         private void cboCaserne_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblConsigne.Text = "Veuillez selectionner un pompier.";
             cboPompier.Items.Clear();
+            cboPompier.Text = "";
+            cboPompier.Select();
 
             if (cboCaserne.SelectedItem == null) { return; }
 
@@ -78,11 +74,15 @@ namespace PimPomBro
 
         private void cboPompier_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboPompier.SelectedItem == null) { return; }
+            if (cboPompier.SelectedItem == null) { 
+                // MessageBox.Show("null pompier"); 
+                return; 
+            }
+            // MessageBox.Show("good pompier"); 
 
-            requete = "SELECT * FROM Pompier WHERE nom LIKE @nomPompier AND prenom LIKE @nomPompier";
+            requete = "SELECT * FROM Pompier p JOIN Grade g ON p.codeGrade = g.code WHERE CONCAT(p.nom, ' ', p.prenom) = @pompier";
             cmd = new SQLiteCommand(requete, Connexion.Connec);
-            cmd.Parameters.AddWithValue("@nomPompier", "%" + cboPompier.SelectedItem.ToString() + "%");
+            cmd.Parameters.AddWithValue("@pompier", cboPompier.SelectedItem.ToString());
             reader = cmd.ExecuteReader();
 
             while (reader.Read())
@@ -91,8 +91,45 @@ namespace PimPomBro
                 lblMatricule.Text = matricule.ToString();
                 lblNom.Text = reader["nom"].ToString();
                 lblPrenom.Text = reader["prenom"].ToString();
-                txtGrade.Text = reader["grade"].ToString();
-                lblTelephone.Text = reader["tel"].ToString();
+                lblSexe.Text = reader["sexe"].ToString().ToUpper();
+                lblDateEmbauche.Text = reader["dateEmbauche"].ToString();
+                txtGrade.Text = reader["codeGrade"].ToString();
+                cboGrade.Text = reader["libelle"].ToString();
+                lblTelephone.Text = reader["portable"].ToString();
+                lblBip.Text = reader["bip"].ToString();
+                if (reader["type"].ToString() == "p") { rdbProfessionel.Checked = true; } else { rdbVolontaire.Checked = true; }
+            }
+
+            requete = "SELECT libelle FROM Grade";
+            cmd = new SQLiteCommand(requete, Connexion.Connec);
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                cboGrade.Items.Add(reader["libelle"].ToString());
+            }
+            cboGrade.Visible = true;
+
+            pnlPompier.Visible = true;
+        }
+        private void btnModifications_Click(object sender, EventArgs e)
+        {
+            btnModifications.Visible = false;
+            pnlInformationsDetaillees.Visible = true;
+
+            requete = "SELECT nom FROM Caserne";
+            cmd = new SQLiteCommand(requete, Connexion.Connec);
+            reader = cmd.ExecuteReader();
+            while (reader.Read()) {
+                cboCaserneDeRattachement.Items.Add(reader["nom"]);
+            }
+            cboCaserneDeRattachement.SelectedItem = cboCaserne.SelectedItem;
+
+            requete = "SELECT libelle FROM Habilitation";
+            cmd = new SQLiteCommand(requete, Connexion.Connec);
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                clbHabilitations.Items.Add(reader["libelle"].ToString());
             }
         }
 

@@ -40,16 +40,16 @@
             this.cboCaserneDeRattachement = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlPompier = new System.Windows.Forms.Panel();
             this.btnModifications = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.lblDateDEmbauche = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblDateEmbauche = new System.Windows.Forms.Label();
             this.lblDateDeNaissance = new System.Windows.Forms.Label();
             this.lblSexe = new System.Windows.Forms.Label();
             this.lblPrenom = new System.Windows.Forms.Label();
             this.lblNom = new System.Windows.Forms.Label();
             this.gboCarriere = new System.Windows.Forms.GroupBox();
-            this.btnChanger = new System.Windows.Forms.Button();
             this.lblBip = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblTelephone = new System.Windows.Forms.Label();
@@ -58,19 +58,23 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rdbVolontaire = new System.Windows.Forms.RadioButton();
             this.rdbProfessionel = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblNum = new System.Windows.Forms.Label();
             this.lblMatricule = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lbl14 = new System.Windows.Forms.Label();
+            this.cboGrade = new System.Windows.Forms.ComboBox();
+            this.lblConsigne = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.clbHabilitations = new System.Windows.Forms.CheckedListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
             this.pnlInformationsDetaillees.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.pnlPompier.SuspendLayout();
             this.panel3.SuspendLayout();
             this.gboCarriere.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +82,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.picNouveau);
             this.panel1.Controls.Add(this.btnNouveau);
             this.panel1.Controls.Add(this.cboPompier);
@@ -139,6 +145,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.clbHabilitations);
             this.groupBox1.Controls.Add(this.cboCaserneDeRattachement);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label13);
@@ -163,7 +170,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(6, 77);
+            this.label12.Location = new System.Drawing.Point(6, 88);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(111, 18);
             this.label12.TabIndex = 10;
@@ -179,16 +186,17 @@
             this.label13.TabIndex = 9;
             this.label13.Text = "Caserne de rattachement :";
             // 
-            // panel2
+            // pnlPompier
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.pnlInformationsDetaillees);
-            this.panel2.Controls.Add(this.btnModifications);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Location = new System.Drawing.Point(350, 13);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(563, 843);
-            this.panel2.TabIndex = 1;
+            this.pnlPompier.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPompier.Controls.Add(this.pnlInformationsDetaillees);
+            this.pnlPompier.Controls.Add(this.btnModifications);
+            this.pnlPompier.Controls.Add(this.panel3);
+            this.pnlPompier.Location = new System.Drawing.Point(350, 12);
+            this.pnlPompier.Name = "pnlPompier";
+            this.pnlPompier.Size = new System.Drawing.Size(563, 843);
+            this.pnlPompier.TabIndex = 1;
+            this.pnlPompier.Visible = false;
             // 
             // btnModifications
             // 
@@ -206,7 +214,7 @@
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.lblDateDEmbauche);
+            this.panel3.Controls.Add(this.lblDateEmbauche);
             this.panel3.Controls.Add(this.lblDateDeNaissance);
             this.panel3.Controls.Add(this.lblSexe);
             this.panel3.Controls.Add(this.lblPrenom);
@@ -214,35 +222,47 @@
             this.panel3.Controls.Add(this.gboCarriere);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.radioButton1);
+            this.panel3.Controls.Add(this.rdbVolontaire);
             this.panel3.Controls.Add(this.rdbProfessionel);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.lblNum);
             this.panel3.Controls.Add(this.lblMatricule);
+            this.panel3.Controls.Add(this.lbl14);
             this.panel3.Location = new System.Drawing.Point(17, 17);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(529, 375);
             this.panel3.TabIndex = 2;
             // 
-            // lblDateDEmbauche
+            // label10
             // 
-            this.lblDateDEmbauche.AutoSize = true;
-            this.lblDateDEmbauche.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateDEmbauche.Location = new System.Drawing.Point(156, 174);
-            this.lblDateDEmbauche.Name = "lblDateDEmbauche";
-            this.lblDateDEmbauche.Size = new System.Drawing.Size(0, 18);
-            this.lblDateDEmbauche.TabIndex = 21;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(19, 139);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(58, 18);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Status :";
+            // 
+            // lblDateEmbauche
+            // 
+            this.lblDateEmbauche.AutoSize = true;
+            this.lblDateEmbauche.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateEmbauche.Location = new System.Drawing.Point(156, 174);
+            this.lblDateEmbauche.Name = "lblDateEmbauche";
+            this.lblDateEmbauche.Size = new System.Drawing.Size(32, 18);
+            this.lblDateEmbauche.TabIndex = 21;
+            this.lblDateEmbauche.Text = "???";
             // 
             // lblDateDeNaissance
             // 
             this.lblDateDeNaissance.AutoSize = true;
             this.lblDateDeNaissance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateDeNaissance.Location = new System.Drawing.Point(383, 93);
+            this.lblDateDeNaissance.Location = new System.Drawing.Point(414, 93);
             this.lblDateDeNaissance.Name = "lblDateDeNaissance";
-            this.lblDateDeNaissance.Size = new System.Drawing.Size(0, 18);
+            this.lblDateDeNaissance.Size = new System.Drawing.Size(32, 18);
             this.lblDateDeNaissance.TabIndex = 20;
+            this.lblDateDeNaissance.Text = "???";
             // 
             // lblSexe
             // 
@@ -250,8 +270,9 @@
             this.lblSexe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSexe.Location = new System.Drawing.Point(325, 62);
             this.lblSexe.Name = "lblSexe";
-            this.lblSexe.Size = new System.Drawing.Size(0, 18);
+            this.lblSexe.Size = new System.Drawing.Size(32, 18);
             this.lblSexe.TabIndex = 19;
+            this.lblSexe.Text = "???";
             // 
             // lblPrenom
             // 
@@ -259,8 +280,9 @@
             this.lblPrenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrenom.Location = new System.Drawing.Point(98, 89);
             this.lblPrenom.Name = "lblPrenom";
-            this.lblPrenom.Size = new System.Drawing.Size(0, 18);
+            this.lblPrenom.Size = new System.Drawing.Size(35, 18);
             this.lblPrenom.TabIndex = 18;
+            this.lblPrenom.Text = "???";
             // 
             // lblNom
             // 
@@ -268,12 +290,13 @@
             this.lblNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNom.Location = new System.Drawing.Point(75, 62);
             this.lblNom.Name = "lblNom";
-            this.lblNom.Size = new System.Drawing.Size(0, 18);
+            this.lblNom.Size = new System.Drawing.Size(35, 18);
             this.lblNom.TabIndex = 17;
+            this.lblNom.Text = "???";
             // 
             // gboCarriere
             // 
-            this.gboCarriere.Controls.Add(this.btnChanger);
+            this.gboCarriere.Controls.Add(this.cboGrade);
             this.gboCarriere.Controls.Add(this.lblBip);
             this.gboCarriere.Controls.Add(this.label8);
             this.gboCarriere.Controls.Add(this.lblTelephone);
@@ -282,23 +305,12 @@
             this.gboCarriere.Controls.Add(this.label6);
             this.gboCarriere.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gboCarriere.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gboCarriere.Location = new System.Drawing.Point(22, 227);
+            this.gboCarriere.Location = new System.Drawing.Point(22, 218);
             this.gboCarriere.Name = "gboCarriere";
-            this.gboCarriere.Size = new System.Drawing.Size(477, 152);
+            this.gboCarriere.Size = new System.Drawing.Size(477, 143);
             this.gboCarriere.TabIndex = 16;
             this.gboCarriere.TabStop = false;
             this.gboCarriere.Text = "Carrière";
-            // 
-            // btnChanger
-            // 
-            this.btnChanger.ForeColor = System.Drawing.Color.DarkRed;
-            this.btnChanger.Location = new System.Drawing.Point(356, 34);
-            this.btnChanger.Name = "btnChanger";
-            this.btnChanger.Size = new System.Drawing.Size(90, 33);
-            this.btnChanger.TabIndex = 15;
-            this.btnChanger.Text = "Changer";
-            this.btnChanger.UseVisualStyleBackColor = true;
-            this.btnChanger.Visible = false;
             // 
             // lblBip
             // 
@@ -306,14 +318,15 @@
             this.lblBip.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBip.Location = new System.Drawing.Point(401, 98);
             this.lblBip.Name = "lblBip";
-            this.lblBip.Size = new System.Drawing.Size(0, 18);
+            this.lblBip.Size = new System.Drawing.Size(35, 18);
             this.lblBip.TabIndex = 14;
+            this.lblBip.Text = "???";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(353, 98);
+            this.label8.Location = new System.Drawing.Point(302, 98);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 18);
             this.label8.TabIndex = 13;
@@ -325,15 +338,16 @@
             this.lblTelephone.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTelephone.Location = new System.Drawing.Point(116, 98);
             this.lblTelephone.Name = "lblTelephone";
-            this.lblTelephone.Size = new System.Drawing.Size(0, 18);
+            this.lblTelephone.Size = new System.Drawing.Size(35, 18);
             this.lblTelephone.TabIndex = 12;
+            this.lblTelephone.Text = "???";
             // 
             // txtGrade
             // 
             this.txtGrade.Enabled = false;
             this.txtGrade.Location = new System.Drawing.Point(84, 37);
             this.txtGrade.Name = "txtGrade";
-            this.txtGrade.Size = new System.Drawing.Size(100, 26);
+            this.txtGrade.Size = new System.Drawing.Size(86, 26);
             this.txtGrade.TabIndex = 11;
             // 
             // label7
@@ -360,7 +374,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(19, 162);
+            this.label3.Location = new System.Drawing.Point(19, 174);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(131, 18);
             this.label3.TabIndex = 15;
@@ -376,26 +390,26 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "Sexe :";
             // 
-            // radioButton1
+            // rdbVolontaire
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Enabled = false;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(212, 135);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioButton1.Size = new System.Drawing.Size(92, 22);
-            this.radioButton1.TabIndex = 13;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Volontaire";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdbVolontaire.AutoSize = true;
+            this.rdbVolontaire.Enabled = false;
+            this.rdbVolontaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbVolontaire.Location = new System.Drawing.Point(216, 139);
+            this.rdbVolontaire.Name = "rdbVolontaire";
+            this.rdbVolontaire.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.rdbVolontaire.Size = new System.Drawing.Size(92, 22);
+            this.rdbVolontaire.TabIndex = 13;
+            this.rdbVolontaire.TabStop = true;
+            this.rdbVolontaire.Text = "Volontaire";
+            this.rdbVolontaire.UseVisualStyleBackColor = true;
             // 
             // rdbProfessionel
             // 
             this.rdbProfessionel.AutoSize = true;
             this.rdbProfessionel.Enabled = false;
             this.rdbProfessionel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbProfessionel.Location = new System.Drawing.Point(83, 137);
+            this.rdbProfessionel.Location = new System.Drawing.Point(83, 139);
             this.rdbProfessionel.Name = "rdbProfessionel";
             this.rdbProfessionel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rdbProfessionel.Size = new System.Drawing.Size(109, 22);
@@ -434,35 +448,74 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Nom :";
             // 
-            // lblNum
-            // 
-            this.lblNum.AutoSize = true;
-            this.lblNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNum.Location = new System.Drawing.Point(292, 10);
-            this.lblNum.Name = "lblNum";
-            this.lblNum.Size = new System.Drawing.Size(74, 31);
-            this.lblNum.TabIndex = 7;
-            this.lblNum.Text = "????";
-            // 
             // lblMatricule
             // 
             this.lblMatricule.AutoSize = true;
             this.lblMatricule.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMatricule.Location = new System.Drawing.Point(162, 10);
+            this.lblMatricule.Location = new System.Drawing.Point(292, 10);
             this.lblMatricule.Name = "lblMatricule";
-            this.lblMatricule.Size = new System.Drawing.Size(124, 31);
-            this.lblMatricule.TabIndex = 6;
-            this.lblMatricule.Text = "Matricule";
+            this.lblMatricule.Size = new System.Drawing.Size(74, 31);
+            this.lblMatricule.TabIndex = 7;
+            this.lblMatricule.Text = "????";
             // 
-            // label10
+            // lbl14
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(19, 139);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(58, 18);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Status :";
+            this.lbl14.AutoSize = true;
+            this.lbl14.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl14.Location = new System.Drawing.Point(162, 10);
+            this.lbl14.Name = "lbl14";
+            this.lbl14.Size = new System.Drawing.Size(124, 31);
+            this.lbl14.TabIndex = 6;
+            this.lbl14.Text = "Matricule";
+            // 
+            // cboGrade
+            // 
+            this.cboGrade.Enabled = false;
+            this.cboGrade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboGrade.FormattingEnabled = true;
+            this.cboGrade.Location = new System.Drawing.Point(194, 37);
+            this.cboGrade.Name = "cboGrade";
+            this.cboGrade.Size = new System.Drawing.Size(176, 28);
+            this.cboGrade.TabIndex = 16;
+            this.cboGrade.Visible = false;
+            // 
+            // lblConsigne
+            // 
+            this.lblConsigne.AutoSize = true;
+            this.lblConsigne.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsigne.Location = new System.Drawing.Point(478, 209);
+            this.lblConsigne.Name = "lblConsigne";
+            this.lblConsigne.Size = new System.Drawing.Size(346, 25);
+            this.lblConsigne.TabIndex = 2;
+            this.lblConsigne.Text = "Veuillez selectionnez une caserne.";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(118, 73);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(93, 25);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "Caserne";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(118, 165);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(91, 25);
+            this.label14.TabIndex = 5;
+            this.label14.Text = "Pompier";
+            // 
+            // clbHabilitations
+            // 
+            this.clbHabilitations.FormattingEnabled = true;
+            this.clbHabilitations.Location = new System.Drawing.Point(128, 92);
+            this.clbHabilitations.Name = "clbHabilitations";
+            this.clbHabilitations.Size = new System.Drawing.Size(356, 88);
+            this.clbHabilitations.TabIndex = 12;
             // 
             // gestionPompiers
             // 
@@ -470,22 +523,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(925, 868);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnlPompier);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.lblConsigne);
             this.Name = "gestionPompiers";
             this.Text = "Gestion du Personnel";
             this.Load += new System.EventHandler(this.gestionPompiers_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).EndInit();
             this.pnlInformationsDetaillees.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel2.ResumeLayout(false);
+            this.pnlPompier.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.gboCarriere.ResumeLayout(false);
             this.gboCarriere.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -496,15 +552,15 @@
         private System.Windows.Forms.ComboBox cboCaserne;
         private System.Windows.Forms.PictureBox picNouveau;
         private System.Windows.Forms.Button btnNouveau;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnlPompier;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblNum;
         private System.Windows.Forms.Label lblMatricule;
+        private System.Windows.Forms.Label lbl14;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rdbVolontaire;
         private System.Windows.Forms.RadioButton rdbProfessionel;
         private System.Windows.Forms.GroupBox gboCarriere;
         private System.Windows.Forms.Label label6;
@@ -514,9 +570,8 @@
         private System.Windows.Forms.Label lblNom;
         private System.Windows.Forms.Label lblSexe;
         private System.Windows.Forms.Label lblPrenom;
-        private System.Windows.Forms.Label lblDateDEmbauche;
+        private System.Windows.Forms.Label lblDateEmbauche;
         private System.Windows.Forms.Label lblDateDeNaissance;
-        private System.Windows.Forms.Button btnChanger;
         private System.Windows.Forms.Label lblBip;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblTelephone;
@@ -527,5 +582,10 @@
         private System.Windows.Forms.ComboBox cboCaserneDeRattachement;
         private System.Windows.Forms.Button btnModifications;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cboGrade;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblConsigne;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.CheckedListBox clbHabilitations;
     }
 }
