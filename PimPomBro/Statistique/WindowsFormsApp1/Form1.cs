@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         public Statistiques()
         {
             InitializeComponent();
-            dataGridView1.BackgroundColor = Color.Navy; // Couleur du fond
+            dataGridView1.BackgroundColor = Color.LightGray; // Couleur du fond
             dataGridView1.DefaultCellStyle.BackColor = Color.White; // Fond des cellules
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black; // Couleur du texte
 
