@@ -15,11 +15,11 @@ using Pinpon;
 
 namespace MenuPrincipal
 {
-    public partial class Form1 : Form
+    public partial class frmTabBord : Form
     {
         String chemin = "Data Source =../../SDIS67.db";
 
-        public Form1()
+        public frmTabBord()
         {
             InitializeComponent();
         }
@@ -165,6 +165,31 @@ namespace MenuPrincipal
                 txtRecherche.ForeColor = Color.Gray;
             }
             
+        }
+
+        private void btnTableauDeBord_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNouvelleMission_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGestionDesEngins_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGestionDuPersonnel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStatistiques_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

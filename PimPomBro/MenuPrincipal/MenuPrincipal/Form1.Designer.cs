@@ -1,6 +1,6 @@
 ﻿namespace MenuPrincipal
 {
-    partial class Form1
+    partial class frmTabBord
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -111,6 +111,7 @@
             this.btnGestionDuPersonnel.TabIndex = 3;
             this.btnGestionDuPersonnel.Text = "Gestion du personnel";
             this.btnGestionDuPersonnel.UseVisualStyleBackColor = false;
+            this.btnGestionDuPersonnel.Click += new System.EventHandler(this.btnGestionDuPersonnel_Click);
             this.btnGestionDuPersonnel.MouseEnter += new System.EventHandler(this.btnTableauDeBord_MouseEnter);
             this.btnGestionDuPersonnel.MouseLeave += new System.EventHandler(this.btnTableauDeBord_MouseLeave);
             // 
@@ -155,6 +156,7 @@
             this.btnStatistiques.TabIndex = 4;
             this.btnStatistiques.Text = "Statistiques";
             this.btnStatistiques.UseVisualStyleBackColor = false;
+            this.btnStatistiques.Click += new System.EventHandler(this.btnStatistiques_Click);
             this.btnStatistiques.MouseEnter += new System.EventHandler(this.btnTableauDeBord_MouseEnter);
             this.btnStatistiques.MouseLeave += new System.EventHandler(this.btnTableauDeBord_MouseLeave);
             // 
@@ -188,6 +190,7 @@
             this.btnGestionDesEngins.TabIndex = 2;
             this.btnGestionDesEngins.Text = "Inventaire des engins";
             this.btnGestionDesEngins.UseVisualStyleBackColor = false;
+            this.btnGestionDesEngins.Click += new System.EventHandler(this.btnGestionDesEngins_Click);
             this.btnGestionDesEngins.MouseEnter += new System.EventHandler(this.btnTableauDeBord_MouseEnter);
             this.btnGestionDesEngins.MouseLeave += new System.EventHandler(this.btnTableauDeBord_MouseLeave);
             // 
@@ -211,6 +214,7 @@
             this.btnNouvelleMission.TabIndex = 1;
             this.btnNouvelleMission.Text = "Nouvelle mission";
             this.btnNouvelleMission.UseVisualStyleBackColor = false;
+            this.btnNouvelleMission.Click += new System.EventHandler(this.btnNouvelleMission_Click);
             this.btnNouvelleMission.MouseEnter += new System.EventHandler(this.btnTableauDeBord_MouseEnter);
             this.btnNouvelleMission.MouseLeave += new System.EventHandler(this.btnTableauDeBord_MouseLeave);
             // 
@@ -224,6 +228,7 @@
             this.btnTableauDeBord.TabIndex = 0;
             this.btnTableauDeBord.Text = "Tableau de bord";
             this.btnTableauDeBord.UseVisualStyleBackColor = false;
+            this.btnTableauDeBord.Click += new System.EventHandler(this.btnTableauDeBord_Click);
             this.btnTableauDeBord.MouseEnter += new System.EventHandler(this.btnTableauDeBord_MouseEnter);
             this.btnTableauDeBord.MouseLeave += new System.EventHandler(this.btnTableauDeBord_MouseLeave);
             // 
@@ -267,7 +272,7 @@
             this.lblSelectDate.TabIndex = 13;
             this.lblSelectDate.Text = "Mission qui a lieu le :";
             // 
-            // Form1
+            // frmTabBord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -282,7 +287,7 @@
             this.Controls.Add(this.groupBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "Form1";
+            this.Name = "frmTabBord";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Click += new System.EventHandler(this.Form1_Click);
