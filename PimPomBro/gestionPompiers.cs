@@ -80,6 +80,8 @@ namespace PimPomBro
             }
             // MessageBox.Show("good pompier"); 
 
+            pnlInformationsDetaillees.Visible = false;
+
             requete = "SELECT * FROM Pompier p JOIN Grade g ON p.codeGrade = g.code WHERE CONCAT(p.nom, ' ', p.prenom) = @pompier";
             cmd = new SQLiteCommand(requete, Connexion.Connec);
             cmd.Parameters.AddWithValue("@pompier", cboPompier.SelectedItem.ToString());
@@ -113,7 +115,11 @@ namespace PimPomBro
         }
         private void btnModifications_Click(object sender, EventArgs e)
         {
-            btnModifications.Visible = false;
+            if (!admin) { connexionAdmin(); }
+            if (!admin) { return; }
+
+
+            // btnModifications.Visible = false;
             pnlInformationsDetaillees.Visible = true;
 
             requete = "SELECT nom FROM Caserne";
@@ -131,7 +137,43 @@ namespace PimPomBro
             {
                 clbHabilitations.Items.Add(reader["libelle"].ToString());
             }
+
+            requete = "SELECT a.dateA,a.dateFin,c.nom FROM Affectation a JOIN Caserne c ON a.idCaserne = c.id WHERE matriculePompier = @matricule AND dateFin IS NOT NULL";
+            cmd = new SQLiteCommand(requete, Connexion.Connec);
+            cmd.Parameters.AddWithValue("@matricule", matricule);
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                string caserne = reader["nom"].ToString();
+                string dateA = reader["dateA"].ToString();
+                string dateFin = reader["dateFin"].ToString();
+                lstAffectations.Items.Add(caserne + " : " + dateA + " - " + dateFin);
+            }
+
+
+            requete = "SELECT enConge FROM Pompier WHERE matricule = @matricule";
+            cmd = new SQLiteCommand(requete, Connexion.Connec);
+            cmd.Parameters.AddWithValue("@matricule", matricule);
+            reader = cmd.ExecuteReader();
+            reader.Read();
+            // MessageBox.Show(Convert.ToInt32(reader["enConge"]).ToString());
+            if (Convert.ToInt32(reader["enConge"]) == 1)
+            {
+                chkConge.Checked = true;
+            }
         }
 
+        private void connexionAdmin()
+        {
+            ConnexionAdmin connexionAdmin = new ConnexionAdmin();
+            var result = connexionAdmin.ShowDialog();
+            if (result == DialogResult.OK) {
+                admin = true;
+            } else
+            {
+                admin = false;
+            }
+
+        }
     }
 }

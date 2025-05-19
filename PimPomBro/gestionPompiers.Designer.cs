@@ -31,12 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(gestionPompiers));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.picNouveau = new System.Windows.Forms.PictureBox();
             this.btnNouveau = new System.Windows.Forms.Button();
             this.cboPompier = new System.Windows.Forms.ComboBox();
             this.cboCaserne = new System.Windows.Forms.ComboBox();
             this.pnlInformationsDetaillees = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.clbHabilitations = new System.Windows.Forms.CheckedListBox();
             this.cboCaserneDeRattachement = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -50,6 +53,7 @@
             this.lblPrenom = new System.Windows.Forms.Label();
             this.lblNom = new System.Windows.Forms.Label();
             this.gboCarriere = new System.Windows.Forms.GroupBox();
+            this.cboGrade = new System.Windows.Forms.ComboBox();
             this.lblBip = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblTelephone = new System.Windows.Forms.Label();
@@ -65,11 +69,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblMatricule = new System.Windows.Forms.Label();
             this.lbl14 = new System.Windows.Forms.Label();
-            this.cboGrade = new System.Windows.Forms.ComboBox();
             this.lblConsigne = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.clbHabilitations = new System.Windows.Forms.CheckedListBox();
+            this.lstAffectations = new System.Windows.Forms.ListView();
+            this.label9 = new System.Windows.Forms.Label();
+            this.chkConge = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
             this.pnlInformationsDetaillees.SuspendLayout();
@@ -93,10 +96,30 @@
             this.panel1.Size = new System.Drawing.Size(330, 843);
             this.panel1.TabIndex = 0;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(118, 165);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(91, 25);
+            this.label14.TabIndex = 5;
+            this.label14.Text = "Pompier";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(118, 73);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(93, 25);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "Caserne";
+            // 
             // picNouveau
             // 
             this.picNouveau.Image = ((System.Drawing.Image)(resources.GetObject("picNouveau.Image")));
-            this.picNouveau.Location = new System.Drawing.Point(74, 345);
+            this.picNouveau.Location = new System.Drawing.Point(74, 451);
             this.picNouveau.Name = "picNouveau";
             this.picNouveau.Size = new System.Drawing.Size(161, 184);
             this.picNouveau.TabIndex = 3;
@@ -136,15 +159,18 @@
             // pnlInformationsDetaillees
             // 
             this.pnlInformationsDetaillees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlInformationsDetaillees.Controls.Add(this.chkConge);
             this.pnlInformationsDetaillees.Controls.Add(this.groupBox1);
             this.pnlInformationsDetaillees.Location = new System.Drawing.Point(17, 403);
             this.pnlInformationsDetaillees.Name = "pnlInformationsDetaillees";
-            this.pnlInformationsDetaillees.Size = new System.Drawing.Size(529, 416);
+            this.pnlInformationsDetaillees.Size = new System.Drawing.Size(529, 422);
             this.pnlInformationsDetaillees.TabIndex = 3;
             this.pnlInformationsDetaillees.Visible = false;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.lstAffectations);
             this.groupBox1.Controls.Add(this.clbHabilitations);
             this.groupBox1.Controls.Add(this.cboCaserneDeRattachement);
             this.groupBox1.Controls.Add(this.label12);
@@ -152,10 +178,18 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(504, 243);
+            this.groupBox1.Size = new System.Drawing.Size(504, 347);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations carrière";
+            // 
+            // clbHabilitations
+            // 
+            this.clbHabilitations.FormattingEnabled = true;
+            this.clbHabilitations.Location = new System.Drawing.Point(128, 92);
+            this.clbHabilitations.Name = "clbHabilitations";
+            this.clbHabilitations.Size = new System.Drawing.Size(356, 88);
+            this.clbHabilitations.TabIndex = 12;
             // 
             // cboCaserneDeRattachement
             // 
@@ -311,6 +345,17 @@
             this.gboCarriere.TabIndex = 16;
             this.gboCarriere.TabStop = false;
             this.gboCarriere.Text = "Carrière";
+            // 
+            // cboGrade
+            // 
+            this.cboGrade.Enabled = false;
+            this.cboGrade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboGrade.FormattingEnabled = true;
+            this.cboGrade.Location = new System.Drawing.Point(194, 37);
+            this.cboGrade.Name = "cboGrade";
+            this.cboGrade.Size = new System.Drawing.Size(176, 28);
+            this.cboGrade.TabIndex = 16;
+            this.cboGrade.Visible = false;
             // 
             // lblBip
             // 
@@ -468,17 +513,6 @@
             this.lbl14.TabIndex = 6;
             this.lbl14.Text = "Matricule";
             // 
-            // cboGrade
-            // 
-            this.cboGrade.Enabled = false;
-            this.cboGrade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboGrade.FormattingEnabled = true;
-            this.cboGrade.Location = new System.Drawing.Point(194, 37);
-            this.cboGrade.Name = "cboGrade";
-            this.cboGrade.Size = new System.Drawing.Size(176, 28);
-            this.cboGrade.TabIndex = 16;
-            this.cboGrade.Visible = false;
-            // 
             // lblConsigne
             // 
             this.lblConsigne.AutoSize = true;
@@ -489,33 +523,37 @@
             this.lblConsigne.TabIndex = 2;
             this.lblConsigne.Text = "Veuillez selectionnez une caserne.";
             // 
-            // label11
+            // lstAffectations
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(118, 73);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(93, 25);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "Caserne";
+            this.lstAffectations.GridLines = true;
+            this.lstAffectations.HideSelection = false;
+            this.lstAffectations.LabelWrap = false;
+            this.lstAffectations.Location = new System.Drawing.Point(9, 244);
+            this.lstAffectations.Name = "lstAffectations";
+            this.lstAffectations.Size = new System.Drawing.Size(475, 97);
+            this.lstAffectations.TabIndex = 13;
+            this.lstAffectations.UseCompatibleStateImageBehavior = false;
             // 
-            // label14
+            // label9
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(118, 165);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(91, 25);
-            this.label14.TabIndex = 5;
-            this.label14.Text = "Pompier";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(6, 216);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(166, 18);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Affectation passées :";
             // 
-            // clbHabilitations
+            // chkConge
             // 
-            this.clbHabilitations.FormattingEnabled = true;
-            this.clbHabilitations.Location = new System.Drawing.Point(128, 92);
-            this.clbHabilitations.Name = "clbHabilitations";
-            this.clbHabilitations.Size = new System.Drawing.Size(356, 88);
-            this.clbHabilitations.TabIndex = 12;
+            this.chkConge.AutoSize = true;
+            this.chkConge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkConge.Location = new System.Drawing.Point(22, 375);
+            this.chkConge.Name = "chkConge";
+            this.chkConge.Size = new System.Drawing.Size(94, 24);
+            this.chkConge.TabIndex = 18;
+            this.chkConge.Text = "en congé";
+            this.chkConge.UseVisualStyleBackColor = true;
             // 
             // gestionPompiers
             // 
@@ -533,6 +571,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).EndInit();
             this.pnlInformationsDetaillees.ResumeLayout(false);
+            this.pnlInformationsDetaillees.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.pnlPompier.ResumeLayout(false);
@@ -587,5 +626,8 @@
         private System.Windows.Forms.Label lblConsigne;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.CheckedListBox clbHabilitations;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ListView lstAffectations;
+        private System.Windows.Forms.CheckBox chkConge;
     }
 }
