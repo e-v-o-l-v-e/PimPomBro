@@ -38,7 +38,10 @@
             this.cboPompier = new System.Windows.Forms.ComboBox();
             this.cboCaserne = new System.Windows.Forms.ComboBox();
             this.pnlInformationsDetaillees = new System.Windows.Forms.Panel();
+            this.chkConge = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lstAffectations = new System.Windows.Forms.ListView();
             this.clbHabilitations = new System.Windows.Forms.CheckedListBox();
             this.cboCaserneDeRattachement = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -70,9 +73,8 @@
             this.lblMatricule = new System.Windows.Forms.Label();
             this.lbl14 = new System.Windows.Forms.Label();
             this.lblConsigne = new System.Windows.Forms.Label();
-            this.lstAffectations = new System.Windows.Forms.ListView();
-            this.label9 = new System.Windows.Forms.Label();
-            this.chkConge = new System.Windows.Forms.CheckBox();
+            this.btnAppliquerModif = new System.Windows.Forms.Button();
+            this.btnAnnuler = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
             this.pnlInformationsDetaillees.SuspendLayout();
@@ -159,6 +161,8 @@
             // pnlInformationsDetaillees
             // 
             this.pnlInformationsDetaillees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlInformationsDetaillees.Controls.Add(this.btnAppliquerModif);
+            this.pnlInformationsDetaillees.Controls.Add(this.btnAnnuler);
             this.pnlInformationsDetaillees.Controls.Add(this.chkConge);
             this.pnlInformationsDetaillees.Controls.Add(this.groupBox1);
             this.pnlInformationsDetaillees.Location = new System.Drawing.Point(17, 403);
@@ -166,6 +170,17 @@
             this.pnlInformationsDetaillees.Size = new System.Drawing.Size(529, 422);
             this.pnlInformationsDetaillees.TabIndex = 3;
             this.pnlInformationsDetaillees.Visible = false;
+            // 
+            // chkConge
+            // 
+            this.chkConge.AutoSize = true;
+            this.chkConge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkConge.Location = new System.Drawing.Point(22, 375);
+            this.chkConge.Name = "chkConge";
+            this.chkConge.Size = new System.Drawing.Size(94, 24);
+            this.chkConge.TabIndex = 18;
+            this.chkConge.Text = "en congé";
+            this.chkConge.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -182,6 +197,27 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations carrière";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(6, 216);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(166, 18);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Affectation passées :";
+            // 
+            // lstAffectations
+            // 
+            this.lstAffectations.GridLines = true;
+            this.lstAffectations.HideSelection = false;
+            this.lstAffectations.LabelWrap = false;
+            this.lstAffectations.Location = new System.Drawing.Point(9, 244);
+            this.lstAffectations.Name = "lstAffectations";
+            this.lstAffectations.Size = new System.Drawing.Size(475, 97);
+            this.lstAffectations.TabIndex = 13;
+            this.lstAffectations.UseCompatibleStateImageBehavior = false;
             // 
             // clbHabilitations
             // 
@@ -356,6 +392,7 @@
             this.cboGrade.Size = new System.Drawing.Size(176, 28);
             this.cboGrade.TabIndex = 16;
             this.cboGrade.Visible = false;
+            this.cboGrade.SelectedIndexChanged += new System.EventHandler(this.cboGrade_SelectedIndexChanged);
             // 
             // lblBip
             // 
@@ -523,37 +560,26 @@
             this.lblConsigne.TabIndex = 2;
             this.lblConsigne.Text = "Veuillez selectionnez une caserne.";
             // 
-            // lstAffectations
+            // btnAppliquerModif
             // 
-            this.lstAffectations.GridLines = true;
-            this.lstAffectations.HideSelection = false;
-            this.lstAffectations.LabelWrap = false;
-            this.lstAffectations.Location = new System.Drawing.Point(9, 244);
-            this.lstAffectations.Name = "lstAffectations";
-            this.lstAffectations.Size = new System.Drawing.Size(475, 97);
-            this.lstAffectations.TabIndex = 13;
-            this.lstAffectations.UseCompatibleStateImageBehavior = false;
+            this.btnAppliquerModif.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAppliquerModif.Location = new System.Drawing.Point(298, 375);
+            this.btnAppliquerModif.Name = "btnAppliquerModif";
+            this.btnAppliquerModif.Size = new System.Drawing.Size(199, 32);
+            this.btnAppliquerModif.TabIndex = 19;
+            this.btnAppliquerModif.Text = "Valider les modifications";
+            this.btnAppliquerModif.UseVisualStyleBackColor = true;
+            this.btnAppliquerModif.Click += new System.EventHandler(this.btnAppliquerModif_Click);
             // 
-            // label9
+            // btnAnnuler
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(6, 216);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(166, 18);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Affectation passées :";
-            // 
-            // chkConge
-            // 
-            this.chkConge.AutoSize = true;
-            this.chkConge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkConge.Location = new System.Drawing.Point(22, 375);
-            this.chkConge.Name = "chkConge";
-            this.chkConge.Size = new System.Drawing.Size(94, 24);
-            this.chkConge.TabIndex = 18;
-            this.chkConge.Text = "en congé";
-            this.chkConge.UseVisualStyleBackColor = true;
+            this.btnAnnuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnnuler.Location = new System.Drawing.Point(174, 375);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Size = new System.Drawing.Size(112, 32);
+            this.btnAnnuler.TabIndex = 20;
+            this.btnAnnuler.Text = "Annuler";
+            this.btnAnnuler.UseVisualStyleBackColor = true;
             // 
             // gestionPompiers
             // 
@@ -629,5 +655,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListView lstAffectations;
         private System.Windows.Forms.CheckBox chkConge;
+        private System.Windows.Forms.Button btnAppliquerModif;
+        private System.Windows.Forms.Button btnAnnuler;
     }
 }

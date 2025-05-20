@@ -119,8 +119,8 @@ namespace PimPomBro
             if (!admin) { return; }
 
 
-            // btnModifications.Visible = false;
             pnlInformationsDetaillees.Visible = true;
+            cboGrade.Enabled = true;
 
             requete = "SELECT nom FROM Caserne";
             cmd = new SQLiteCommand(requete, Connexion.Connec);
@@ -174,6 +174,38 @@ namespace PimPomBro
                 admin = false;
             }
 
+        }
+
+       private void btnAppliquerModif_Click(object sender, EventArgs e)
+        {
+            using (SQLiteTransaction tran = Connexion.Connec.BeginTransaction())
+            {
+                try
+                {
+                    requete = "UPDATE Pompier SET codeGrade = @codeGrade WHERE matricule = @matricule";
+                    cmd = new SQLiteCommand(requete, Connexion.Connec);
+                    cmd.Parameters.AddWithValue("@codeGrade", txtGrade.Text);
+                    cmd.Parameters.AddWithValue("@matricule", matricule);
+                    tran.Commit();
+                }
+                catch (Exception ex)
+                {
+                    tran.Rollback();
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void cboGrade_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            requete = "SELECT code FROM Grade WHERE libelle = @libelle";
+            cmd = new SQLiteCommand(requete, Connexion.Connec);
+            cmd.Parameters.AddWithValue("@libelle", cboGrade.Text);
+            reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                txtGrade.Text = reader["code"].ToString();
+            }
         }
     }
 }
