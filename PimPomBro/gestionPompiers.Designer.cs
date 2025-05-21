@@ -38,6 +38,8 @@
             this.cboPompier = new System.Windows.Forms.ComboBox();
             this.cboCaserne = new System.Windows.Forms.ComboBox();
             this.pnlInformationsDetaillees = new System.Windows.Forms.Panel();
+            this.btnAppliquerModif = new System.Windows.Forms.Button();
+            this.btnAnnuler = new System.Windows.Forms.Button();
             this.chkConge = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -73,8 +75,6 @@
             this.lblMatricule = new System.Windows.Forms.Label();
             this.lbl14 = new System.Windows.Forms.Label();
             this.lblConsigne = new System.Windows.Forms.Label();
-            this.btnAppliquerModif = new System.Windows.Forms.Button();
-            this.btnAnnuler = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
             this.pnlInformationsDetaillees.SuspendLayout();
@@ -170,6 +170,27 @@
             this.pnlInformationsDetaillees.Size = new System.Drawing.Size(529, 422);
             this.pnlInformationsDetaillees.TabIndex = 3;
             this.pnlInformationsDetaillees.Visible = false;
+            // 
+            // btnAppliquerModif
+            // 
+            this.btnAppliquerModif.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAppliquerModif.Location = new System.Drawing.Point(298, 375);
+            this.btnAppliquerModif.Name = "btnAppliquerModif";
+            this.btnAppliquerModif.Size = new System.Drawing.Size(199, 32);
+            this.btnAppliquerModif.TabIndex = 19;
+            this.btnAppliquerModif.Text = "Valider les modifications";
+            this.btnAppliquerModif.UseVisualStyleBackColor = true;
+            this.btnAppliquerModif.Click += new System.EventHandler(this.btnAppliquerModif_Click);
+            // 
+            // btnAnnuler
+            // 
+            this.btnAnnuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnnuler.Location = new System.Drawing.Point(174, 375);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Size = new System.Drawing.Size(112, 32);
+            this.btnAnnuler.TabIndex = 20;
+            this.btnAnnuler.Text = "Annuler";
+            this.btnAnnuler.UseVisualStyleBackColor = true;
             // 
             // chkConge
             // 
@@ -398,7 +419,7 @@
             // 
             this.lblBip.AutoSize = true;
             this.lblBip.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBip.Location = new System.Drawing.Point(401, 98);
+            this.lblBip.Location = new System.Drawing.Point(351, 98);
             this.lblBip.Name = "lblBip";
             this.lblBip.Size = new System.Drawing.Size(35, 18);
             this.lblBip.TabIndex = 14;
@@ -559,27 +580,6 @@
             this.lblConsigne.Size = new System.Drawing.Size(346, 25);
             this.lblConsigne.TabIndex = 2;
             this.lblConsigne.Text = "Veuillez selectionnez une caserne.";
-            // 
-            // btnAppliquerModif
-            // 
-            this.btnAppliquerModif.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAppliquerModif.Location = new System.Drawing.Point(298, 375);
-            this.btnAppliquerModif.Name = "btnAppliquerModif";
-            this.btnAppliquerModif.Size = new System.Drawing.Size(199, 32);
-            this.btnAppliquerModif.TabIndex = 19;
-            this.btnAppliquerModif.Text = "Valider les modifications";
-            this.btnAppliquerModif.UseVisualStyleBackColor = true;
-            this.btnAppliquerModif.Click += new System.EventHandler(this.btnAppliquerModif_Click);
-            // 
-            // btnAnnuler
-            // 
-            this.btnAnnuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnnuler.Location = new System.Drawing.Point(174, 375);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(112, 32);
-            this.btnAnnuler.TabIndex = 20;
-            this.btnAnnuler.Text = "Annuler";
-            this.btnAnnuler.UseVisualStyleBackColor = true;
             // 
             // gestionPompiers
             // 

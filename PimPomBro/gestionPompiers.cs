@@ -26,14 +26,10 @@ namespace PimPomBro
 
         private void gestionPompiers_Load(object sender, EventArgs e)
         {
-            requete = "SELECT nom FROM Caserne";
-            cmd = new SQLiteCommand(requete, Connexion.Connec);
-            reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                cboCaserne.Items.Add(reader[0].ToString());
-            }
-            reader.Close();
+            cboCaserne.DataSource = MesDatas.DsGlobal.Tables["Caserne"];
+            cboCaserne.DisplayMember = "nom";
+            cboCaserne.ValueMember = "id";
+            
         }
 
         private void cboPompier_Click(object sender, EventArgs e)
@@ -53,23 +49,12 @@ namespace PimPomBro
 
             if (cboCaserne.SelectedItem == null) { return; }
 
-            requete =
-                "SELECT p.nom || ' ' || p.prenom " +
-                "FROM Pompier p " +
-                "JOIN Affectation a ON a.matriculePompier = p.matricule " +
-                "JOIN Caserne c ON a.idCaserne = c.id " +
-                "WHERE c.nom = @caserneNom";
+            DataTable pompierTable = MesDatas.DsGlobal.Tables["Pompier"];
+            pompierTable.DefaultView.RowFilter = "p.matricule = a.matricule where a.id = " + cboCaserne.SelectedValue;
+            cboPompier.DataSource = pompierTable;
+            cboPompier.DisplayMember = "nom || ' ' || prenom";
+            cboPompier.ValueMember = "id";
 
-            cmd = new SQLiteCommand(requete, Connexion.Connec);
-            cmd.Parameters.AddWithValue("@caserneNom", cboCaserne.SelectedItem.ToString());
-            reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                cboPompier.Items.Add(reader[0].ToString());
-            }
-
-            reader.Close();
         }
 
         private void cboPompier_SelectedIndexChanged(object sender, EventArgs e)
@@ -87,7 +72,7 @@ namespace PimPomBro
             cmd.Parameters.AddWithValue("@pompier", cboPompier.SelectedItem.ToString());
             reader = cmd.ExecuteReader();
 
-            while (reader.Read())
+            if (reader.Read())
             {
                 matricule = Convert.ToInt32(reader["matricule"]);
                 lblMatricule.Text = matricule.ToString();
@@ -97,10 +82,24 @@ namespace PimPomBro
                 lblDateEmbauche.Text = reader["dateEmbauche"].ToString();
                 txtGrade.Text = reader["codeGrade"].ToString();
                 cboGrade.Text = reader["libelle"].ToString();
-                lblTelephone.Text = reader["portable"].ToString();
-                lblBip.Text = reader["bip"].ToString();
+                try
+                {
+                MessageBox.Show(reader["type"].ToString());
                 if (reader["type"].ToString() == "p") { rdbProfessionel.Checked = true; } else { rdbVolontaire.Checked = true; }
+
+                } catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                try
+                {
+                    lblTelephone.Text = reader["portable"].ToString();
+                    lblBip.Text = reader["bip"].ToString();
+                }
+                catch (Exception ex) { }
+
             }
+            reader.Close();
 
             requete = "SELECT libelle FROM Grade";
             cmd = new SQLiteCommand(requete, Connexion.Connec);
@@ -112,6 +111,7 @@ namespace PimPomBro
             cboGrade.Visible = true;
 
             pnlPompier.Visible = true;
+            reader.Close();
         }
         private void btnModifications_Click(object sender, EventArgs e)
         {
@@ -161,6 +161,8 @@ namespace PimPomBro
             {
                 chkConge.Checked = true;
             }
+
+            reader.Close();
         }
 
         private void connexionAdmin()
@@ -182,10 +184,11 @@ namespace PimPomBro
             {
                 try
                 {
-                    requete = "UPDATE Pompier SET codeGrade = @codeGrade WHERE matricule = @matricule";
+                    requete = "UPDATE Pompier SET codeGrade = @codeGrade, enConge = @enConge WHERE matricule = @matricule";
                     cmd = new SQLiteCommand(requete, Connexion.Connec);
                     cmd.Parameters.AddWithValue("@codeGrade", txtGrade.Text);
                     cmd.Parameters.AddWithValue("@matricule", matricule);
+                    cmd.Parameters.AddWithValue("@enConge", (chkConge.Checked) ? 1 : 0);
                     tran.Commit();
                 }
                 catch (Exception ex)
@@ -206,6 +209,8 @@ namespace PimPomBro
             {
                 txtGrade.Text = reader["code"].ToString();
             }
+
+            reader.Close();
         }
     }
 }
