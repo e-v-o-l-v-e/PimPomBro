@@ -31,6 +31,14 @@ namespace PimPomBro
             cboCaserne.DataSource = MesDatas.DsGlobal.Tables["Caserne"];
             // cboCaserne.SelectedIndex = -1;
 
+            cboCaserneDeRattachement.DisplayMember = "nom";
+            cboCaserneDeRattachement.ValueMember = "id";
+            cboCaserneDeRattachement.DataSource = MesDatas.DsGlobal.Tables["Caserne"];
+
+            foreach (DataRow rowHab in MesDatas.DsGlobal.Tables["Habilitation"].Rows)
+            {
+                clbHabilitations.Items.Add(rowHab["libelle"].ToString());
+            }
         }
 
         private void cboPompier_Click(object sender, EventArgs e)
@@ -130,24 +138,24 @@ namespace PimPomBro
             if (!admin) { connexionAdmin(); }
             if (!admin) { return; }
 
-            DataTable tableCasernes = MesDatas.DsGlobal.Tables["Caserne"];
-            cboCaserneDeRattachement.DisplayMember = "nom";
-            cboCaserneDeRattachement.ValueMember = "id";
-            cboCaserneDeRattachement.DataSource = tableCasernes;
             // cboCaserneDeRattachement.SelectedItem = cboCaserne.SelectedItem;
 
-            DataTable tableHabilitations = MesDatas.DsGlobal.Tables["Habilitation"];
-            foreach (DataRow rowHab in tableHabilitations.Rows)
-            {
-                clbHabilitations.Items.Add(rowHab["libelle"].ToString());
-            }
 
-            requete = "SELECT libelle FROM Habilitation";
-            cmd = new SQLiteCommand(requete, Connexion.Connec);
-            reader = cmd.ExecuteReader();
-            while (reader.Read())
+            for (int i = 0; i < clbHabilitations.Items.Count; i++)
             {
-                clbHabilitations.Items.Add(reader["libelle"].ToString());
+                clbHabilitations.SetItemChecked(i, false);
+            }
+            requete = "SELECT h.libelle FROM Passer p JOIN Habilitation h ON p.idHabilitation = h.id WHERE p.matriculePompier = @matricule";
+            cmd = new SQLiteCommand(requete, Connexion.Connec);
+            cmd.Parameters.AddWithValue("@matricule", matricule);
+            reader = cmd.ExecuteReader();
+            while (reader.Read()) {
+                string libelle = reader["libelle"].ToString();
+                int index = clbHabilitations.Items.IndexOf(libelle);
+                if (index != -1)
+                {
+                    clbHabilitations.SetItemChecked(index, true);
+                }
             }
 
             requete = "SELECT a.dateA,a.dateFin,c.nom FROM Affectation a JOIN Caserne c ON a.idCaserne = c.id WHERE matriculePompier = @matricule AND dateFin IS NOT NULL";
