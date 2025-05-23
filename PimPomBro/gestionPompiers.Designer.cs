@@ -44,7 +44,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.lstAffectations = new System.Windows.Forms.ListView();
-            this.clbHabilitations = new System.Windows.Forms.CheckedListBox();
             this.cboCaserneDeRattachement = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -75,6 +74,7 @@
             this.lblMatricule = new System.Windows.Forms.Label();
             this.lbl14 = new System.Windows.Forms.Label();
             this.lblConsigne = new System.Windows.Forms.Label();
+            this.lstHabilitations = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
             this.pnlInformationsDetaillees.SuspendLayout();
@@ -205,9 +205,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lstHabilitations);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.lstAffectations);
-            this.groupBox1.Controls.Add(this.clbHabilitations);
             this.groupBox1.Controls.Add(this.cboCaserneDeRattachement);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label13);
@@ -239,14 +239,6 @@
             this.lstAffectations.Size = new System.Drawing.Size(475, 97);
             this.lstAffectations.TabIndex = 13;
             this.lstAffectations.UseCompatibleStateImageBehavior = false;
-            // 
-            // clbHabilitations
-            // 
-            this.clbHabilitations.FormattingEnabled = true;
-            this.clbHabilitations.Location = new System.Drawing.Point(128, 92);
-            this.clbHabilitations.Name = "clbHabilitations";
-            this.clbHabilitations.Size = new System.Drawing.Size(356, 88);
-            this.clbHabilitations.TabIndex = 12;
             // 
             // cboCaserneDeRattachement
             // 
@@ -580,6 +572,15 @@
             this.lblConsigne.TabIndex = 2;
             this.lblConsigne.Text = "Veuillez selectionnez une caserne.";
             // 
+            // lstHabilitations
+            // 
+            this.lstHabilitations.FormattingEnabled = true;
+            this.lstHabilitations.ItemHeight = 20;
+            this.lstHabilitations.Location = new System.Drawing.Point(123, 88);
+            this.lstHabilitations.Name = "lstHabilitations";
+            this.lstHabilitations.Size = new System.Drawing.Size(361, 104);
+            this.lstHabilitations.TabIndex = 15;
+            // 
             // gestionPompiers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -650,11 +651,11 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblConsigne;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.CheckedListBox clbHabilitations;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListView lstAffectations;
         private System.Windows.Forms.CheckBox chkConge;
         private System.Windows.Forms.Button btnAppliquerModif;
         private System.Windows.Forms.Button btnAnnuler;
+        private System.Windows.Forms.ListBox lstHabilitations;
     }
 }
