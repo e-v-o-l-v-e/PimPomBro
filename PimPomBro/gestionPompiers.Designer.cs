@@ -412,7 +412,6 @@
             this.cboGrade.Name = "cboGrade";
             this.cboGrade.Size = new System.Drawing.Size(176, 28);
             this.cboGrade.TabIndex = 16;
-            this.cboGrade.Visible = false;
             this.cboGrade.SelectedIndexChanged += new System.EventHandler(this.cboGrade_SelectedIndexChanged);
             // 
             // lblBip

@@ -20,7 +20,6 @@ namespace PimPomBro
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Remplissage du DataSet (sans mise en place des clefs primaires et étrangères par contre)
             string req;
             DataTable schemaTable = Connexion.Connec.GetSchema("Tables");
             string liste = "";
@@ -30,7 +29,11 @@ namespace PimPomBro
                 req = @"select * from " + nomTable;
                 SQLiteCommand cd = new SQLiteCommand(req, Connexion.Connec);
                 SQLiteDataAdapter da = new SQLiteDataAdapter(cd);
+
+                da.FillSchema(MesDatas.DsGlobal, SchemaType.Source, nomTable);
+
                 da.Fill(MesDatas.DsGlobal, nomTable);
+
                 liste += nomTable + "\n";
             }
 

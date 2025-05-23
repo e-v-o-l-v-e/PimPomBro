@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +13,7 @@ namespace PimPomBro
 {
     public partial class gestionPompiers : Form
     {
-        bool admin = true; // A CHANGER A FALSE, TRUE JUSTE POUR EVITER DE LOGIN A CHAQUE TEST /!\
+        bool admin = false;
         private int matricule = -1;
         string requete = "";
         SQLiteCommand cmd = null;
@@ -30,7 +30,7 @@ namespace PimPomBro
             cboCaserne.ValueMember = "id";
             cboCaserne.DataSource = MesDatas.DsGlobal.Tables["Caserne"];
             // cboCaserne.SelectedIndex = -1;
-
+            
         }
 
         private void cboPompier_Click(object sender, EventArgs e)
@@ -65,8 +65,9 @@ namespace PimPomBro
             string filter = "matricule IN (" + string.Join(",", listeMatricules) + ")";
             DataView dv = new DataView(tablePompiers, filter, null, DataViewRowState.CurrentRows);
 
-            cboPompier.ValueMember = "matricule";
             cboPompier.DataSource = dv;
+            // cboPompier.DisplayMember = "nom";
+            cboPompier.ValueMember = "matricule";
 
             cboPompier.Format += (s, e2) =>
             {
@@ -80,67 +81,66 @@ namespace PimPomBro
 
         private void cboPompier_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboPompier.SelectedItem == null)
-            {
+            if (cboPompier.SelectedItem == null) { 
                 // MessageBox.Show("null pompier"); 
-                return;
+                return; 
             }
             // MessageBox.Show("good pompier"); 
 
             pnlInformationsDetaillees.Visible = false;
-            cboGrade.Enabled = false;
 
 
             matricule = Convert.ToInt32(cboPompier.SelectedValue);
             DataTable tablePompier = MesDatas.DsGlobal.Tables["Pompier"];
             DataRow rowPompier = tablePompier.Rows.Find(matricule);
+            DataTable tableGrade = MesDatas.DsGlobal.Tables["Grade"];
 
-            lblMatricule.Text = matricule.ToString();
-            lblNom.Text = rowPompier["nom"].ToString();
-            lblPrenom.Text = rowPompier["prenom"].ToString();
-            lblSexe.Text = rowPompier["sexe"].ToString().ToUpper();
-            lblDateEmbauche.Text = rowPompier["dateEmbauche"].ToString();
-            txtGrade.Text = rowPompier["codeGrade"].ToString();
-            if (rowPompier["type"].ToString() == "p") { rdbProfessionel.Checked = true; } else { rdbVolontaire.Checked = true; }
-            try
-            {
-                lblTelephone.Text = rowPompier["portable"].ToString();
-                lblBip.Text = rowPompier["bip"].ToString();
-            }
-            catch (Exception ex) { }
 
-            try
-            {
-                requete = "SELECT libelle FROM Grade WHERE code = @codeGrade";
-                cmd = new SQLiteCommand(requete, Connexion.Connec);
-                cmd.Parameters.AddWithValue("@codeGrade", txtGrade.Text);
-                reader = cmd.ExecuteReader();
-                if (reader.Read())
+
+                lblMatricule.Text = matricule.ToString();
+                lblNom.Text = reader["nom"].ToString();
+                lblPrenom.Text = reader["prenom"].ToString();
+                lblSexe.Text = reader["sexe"].ToString().ToUpper();
+                lblDateEmbauche.Text = reader["dateEmbauche"].ToString();
+                txtGrade.Text = reader["codeGrade"].ToString();
+                cboGrade.Text = reader["libelle"].ToString();
+                try
                 {
-                    cboGrade.Text = reader["libelle"].ToString();
+                MessageBox.Show(reader["type"].ToString());
+                if (reader["type"].ToString() == "p") { rdbProfessionel.Checked = true; } else { rdbVolontaire.Checked = true; }
+
+                } catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
-            } catch (Exception ex) { 
-                cboGrade.Visible = false;
+                try
+                {
+                    lblTelephone.Text = reader["portable"].ToString();
+                    lblBip.Text = reader["bip"].ToString();
+                }
+                catch (Exception ex) { }
+
             }
+            }
+            cboGrade.Visible = true;
 
             pnlPompier.Visible = true;
-        }
         private void btnModifications_Click(object sender, EventArgs e)
         {
             if (!admin) { connexionAdmin(); }
             if (!admin) { return; }
 
-            DataTable tableCasernes = MesDatas.DsGlobal.Tables["Caserne"];
-            cboCaserneDeRattachement.DisplayMember = "nom";
-            cboCaserneDeRattachement.ValueMember = "id";
-            cboCaserneDeRattachement.DataSource = tableCasernes;
-            // cboCaserneDeRattachement.SelectedItem = cboCaserne.SelectedItem;
 
-            DataTable tableHabilitations = MesDatas.DsGlobal.Tables["Habilitation"];
-            foreach (DataRow rowHab in tableHabilitations.Rows)
-            {
-                clbHabilitations.Items.Add(rowHab["libelle"].ToString());
+            pnlInformationsDetaillees.Visible = true;
+            cboGrade.Enabled = true;
+
+            requete = "SELECT nom FROM Caserne";
+            cmd = new SQLiteCommand(requete, Connexion.Connec);
+            reader = cmd.ExecuteReader();
+            while (reader.Read()) {
+                cboCaserneDeRattachement.Items.Add(reader["nom"]);
             }
+            cboCaserneDeRattachement.SelectedItem = cboCaserne.SelectedItem;
 
             requete = "SELECT libelle FROM Habilitation";
             cmd = new SQLiteCommand(requete, Connexion.Connec);
@@ -175,8 +175,6 @@ namespace PimPomBro
             }
 
             reader.Close();
-            cboGrade.Enabled = true;
-            pnlInformationsDetaillees.Visible = true;
         }
 
         private void connexionAdmin()
