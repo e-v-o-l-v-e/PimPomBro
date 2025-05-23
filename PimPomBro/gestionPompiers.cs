@@ -34,6 +34,10 @@ namespace PimPomBro
             cboCaserneDeRattachement.DisplayMember = "nom";
             cboCaserneDeRattachement.ValueMember = "id";
             cboCaserneDeRattachement.DataSource = MesDatas.DsGlobal.Tables["Caserne"];
+
+            cboGrade.DisplayMember = "libelle";
+            cboGrade.ValueMember = "code";
+            cboGrade.DataSource = MesDatas.DsGlobal.Tables["Grade"];
         }
 
         private void cboPompier_Click(object sender, EventArgs e)
@@ -193,6 +197,7 @@ namespace PimPomBro
             {
                 try
                 {
+                    MessageBox.Show(txtGrade.Text);
                     requete = "UPDATE Pompier SET codeGrade = @codeGrade, enConge = @enConge WHERE matricule = @matricule";
                     cmd = new SQLiteCommand(requete, Connexion.Connec);
                     cmd.Parameters.AddWithValue("@codeGrade", txtGrade.Text);
