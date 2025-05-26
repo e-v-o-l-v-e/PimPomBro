@@ -42,6 +42,7 @@
             this.btnAnnuler = new System.Windows.Forms.Button();
             this.chkConge = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lstHabilitations = new System.Windows.Forms.ListBox();
             this.label9 = new System.Windows.Forms.Label();
             this.lstAffectations = new System.Windows.Forms.ListView();
             this.cboCaserneDeRattachement = new System.Windows.Forms.ComboBox();
@@ -67,14 +68,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.rdbVolontaire = new System.Windows.Forms.RadioButton();
-            this.rdbProfessionel = new System.Windows.Forms.RadioButton();
+            this.rdbProfessionnel = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMatricule = new System.Windows.Forms.Label();
             this.lbl14 = new System.Windows.Forms.Label();
             this.lblConsigne = new System.Windows.Forms.Label();
-            this.lstHabilitations = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
             this.pnlInformationsDetaillees.SuspendLayout();
@@ -219,6 +219,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations carrière";
             // 
+            // lstHabilitations
+            // 
+            this.lstHabilitations.FormattingEnabled = true;
+            this.lstHabilitations.ItemHeight = 20;
+            this.lstHabilitations.Location = new System.Drawing.Point(123, 88);
+            this.lstHabilitations.Name = "lstHabilitations";
+            this.lstHabilitations.Size = new System.Drawing.Size(361, 104);
+            this.lstHabilitations.TabIndex = 15;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -306,7 +315,7 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.rdbVolontaire);
-            this.panel3.Controls.Add(this.rdbProfessionel);
+            this.panel3.Controls.Add(this.rdbProfessionnel);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
@@ -498,19 +507,19 @@
             this.rdbVolontaire.Text = "Volontaire";
             this.rdbVolontaire.UseVisualStyleBackColor = true;
             // 
-            // rdbProfessionel
+            // rdbProfessionnel
             // 
-            this.rdbProfessionel.AutoSize = true;
-            this.rdbProfessionel.Enabled = false;
-            this.rdbProfessionel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbProfessionel.Location = new System.Drawing.Point(83, 139);
-            this.rdbProfessionel.Name = "rdbProfessionel";
-            this.rdbProfessionel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rdbProfessionel.Size = new System.Drawing.Size(109, 22);
-            this.rdbProfessionel.TabIndex = 12;
-            this.rdbProfessionel.TabStop = true;
-            this.rdbProfessionel.Text = "Professionel";
-            this.rdbProfessionel.UseVisualStyleBackColor = true;
+            this.rdbProfessionnel.AutoSize = true;
+            this.rdbProfessionnel.Enabled = false;
+            this.rdbProfessionnel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbProfessionnel.Location = new System.Drawing.Point(83, 139);
+            this.rdbProfessionnel.Name = "rdbProfessionnel";
+            this.rdbProfessionnel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.rdbProfessionnel.Size = new System.Drawing.Size(117, 22);
+            this.rdbProfessionnel.TabIndex = 12;
+            this.rdbProfessionnel.TabStop = true;
+            this.rdbProfessionnel.Text = "Professionnel";
+            this.rdbProfessionnel.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -572,15 +581,6 @@
             this.lblConsigne.TabIndex = 2;
             this.lblConsigne.Text = "Veuillez selectionnez une caserne.";
             // 
-            // lstHabilitations
-            // 
-            this.lstHabilitations.FormattingEnabled = true;
-            this.lstHabilitations.ItemHeight = 20;
-            this.lstHabilitations.Location = new System.Drawing.Point(123, 88);
-            this.lstHabilitations.Name = "lstHabilitations";
-            this.lstHabilitations.Size = new System.Drawing.Size(361, 104);
-            this.lstHabilitations.TabIndex = 15;
-            // 
             // gestionPompiers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -626,7 +626,7 @@
         private System.Windows.Forms.Label lbl14;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RadioButton rdbVolontaire;
-        private System.Windows.Forms.RadioButton rdbProfessionel;
+        private System.Windows.Forms.RadioButton rdbProfessionnel;
         private System.Windows.Forms.GroupBox gboCarriere;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;

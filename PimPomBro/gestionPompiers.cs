@@ -38,6 +38,9 @@ namespace PimPomBro
             cboGrade.DisplayMember = "libelle";
             cboGrade.ValueMember = "code";
             cboGrade.DataSource = MesDatas.DsGlobal.Tables["Grade"];
+
+            cboPompier.Text = "choisir pompier";
+            cboPompier.SelectedIndex = -1;
         }
 
         private void cboPompier_Click(object sender, EventArgs e)
@@ -51,7 +54,8 @@ namespace PimPomBro
         private void cboCaserne_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblConsigne.Text = "Veuillez selectionner un pompier.";
-            cboPompier.Text = "";
+            cboPompier.Text = "choisir pompier";
+            cboPompier.SelectedIndex = -1;
             cboPompier.Select();
 
             if (cboCaserne.SelectedItem == null) { return; }
@@ -83,11 +87,13 @@ namespace PimPomBro
                     e2.Value = drv["nom"] + " " + drv["prenom"];
                 }
             };
+
+            pnlPompier.Visible = false;
         }
 
         private void cboPompier_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboPompier.SelectedItem == null)
+            if (cboPompier.SelectedItem == null || cboPompier.SelectedIndex == -1 || cboPompier.Text == "")
             {
                 // MessageBox.Show("null pompier"); 
                 return;
@@ -108,7 +114,7 @@ namespace PimPomBro
             lblSexe.Text = rowPompier["sexe"].ToString().ToUpper();
             lblDateEmbauche.Text = rowPompier["dateEmbauche"].ToString();
             txtGrade.Text = rowPompier["codeGrade"].ToString();
-            if (rowPompier["type"].ToString() == "p") { rdbProfessionel.Checked = true; } else { rdbVolontaire.Checked = true; }
+            if (rowPompier["type"].ToString() == "p") { rdbProfessionnel.Checked = true; } else { rdbVolontaire.Checked = true; }
             try
             {
                 lblTelephone.Text = rowPompier["portable"].ToString();
@@ -137,7 +143,7 @@ namespace PimPomBro
             if (!admin) { connexionAdmin(); }
             if (!admin) { return; }
 
-            // cboCaserneDeRattachement.SelectedItem = cboCaserne.SelectedItem;
+            cboCaserneDeRattachement.Text = cboCaserne.Text;
 
 
             lstHabilitations.Items.Clear();
@@ -171,24 +177,14 @@ namespace PimPomBro
             if (Convert.ToInt32(reader["enConge"]) == 1)
             {
                 chkConge.Checked = true;
+            } else
+            {
+                chkConge.Checked = false;
             }
 
             reader.Close();
             cboGrade.Enabled = true;
             pnlInformationsDetaillees.Visible = true;
-        }
-
-        private void connexionAdmin()
-        {
-            ConnexionAdmin connexionAdmin = new ConnexionAdmin();
-            var result = connexionAdmin.ShowDialog();
-            if (result == DialogResult.OK) {
-                admin = true;
-            } else
-            {
-                admin = false;
-            }
-
         }
 
        private void btnAppliquerModif_Click(object sender, EventArgs e)
@@ -197,20 +193,22 @@ namespace PimPomBro
             {
                 try
                 {
-                    MessageBox.Show(txtGrade.Text);
                     requete = "UPDATE Pompier SET codeGrade = @codeGrade, enConge = @enConge WHERE matricule = @matricule";
-                    cmd = new SQLiteCommand(requete, Connexion.Connec);
+                    cmd = new SQLiteCommand(requete, Connexion.Connec, tran);
                     cmd.Parameters.AddWithValue("@codeGrade", txtGrade.Text);
                     cmd.Parameters.AddWithValue("@matricule", matricule);
                     cmd.Parameters.AddWithValue("@enConge", (chkConge.Checked) ? 1 : 0);
+                    cmd.ExecuteNonQuery();
                     tran.Commit();
                 }
                 catch (Exception ex)
                 {
                     tran.Rollback();
                     MessageBox.Show(ex.Message);
+                    return;
                 }
             }
+            MesDatas.refreshTable("Pompier");
         }
 
         private void cboGrade_SelectedIndexChanged(object sender, EventArgs e)
@@ -226,5 +224,18 @@ namespace PimPomBro
 
             reader.Close();
         }
+        private void connexionAdmin()
+        {
+            ConnexionAdmin connexionAdmin = new ConnexionAdmin();
+            var result = connexionAdmin.ShowDialog();
+            if (result == DialogResult.OK) {
+                admin = true;
+            } else
+            {
+                admin = false;
+            }
+
+        }
+
     }
 }
