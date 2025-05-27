@@ -237,5 +237,12 @@ namespace PimPomBro
 
         }
 
+        private void btnNouveau_Click(object sender, EventArgs e)
+        {
+            CreationPompier creationPompier = new CreationPompier();
+            creationPompier.ShowDialog();
+            MesDatas.refreshTable("Pompier");
+            MesDatas.refreshTable("Affectation");
+        }
     }
 }

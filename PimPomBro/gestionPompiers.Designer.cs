@@ -136,6 +136,7 @@
             this.btnNouveau.TabIndex = 2;
             this.btnNouveau.Text = "Nouveau Pompier";
             this.btnNouveau.UseVisualStyleBackColor = true;
+            this.btnNouveau.Click += new System.EventHandler(this.btnNouveau_Click);
             // 
             // cboPompier
             // 
