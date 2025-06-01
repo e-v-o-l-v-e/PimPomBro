@@ -20,7 +20,16 @@ namespace PimPomBro
 
         private void CreationPompier_Load(object sender, EventArgs e)
         {
+            cboCaserneDeRattachement.DisplayMember = "nom";
+            cboCaserneDeRattachement.ValueMember = "id";
+            cboCaserneDeRattachement.DataSource = MesDatas.DsGlobal.Tables["Caserne"];
+
             rdbProfessionnel.Checked = true;
+
+
+            cboGrade.DisplayMember = "libelle";
+            cboGrade.ValueMember = "code";
+            cboGrade.DataSource = MesDatas.DsGlobal.Tables["Grade"];
 
             string requete = "SELECT libelle FROM Habilitation";
             SQLiteCommand cmd = new SQLiteCommand(requete, Connexion.Connec);
@@ -37,18 +46,15 @@ namespace PimPomBro
 
             try
             {
-                string requete = "SELECT max(a.matriculePompier) FROM Affectation a JOIN Caserne c ON a.idCaserne = c.id WHERE c.nom = @caserne";
+                string requete = "SELECT MAX(matricule) FROM Pompier";
                 SQLiteCommand cmd = new SQLiteCommand(requete, Connexion.Connec);
-                cmd.Parameters.AddWithValue("@caserne", cboCaserneDeRattachement.Text);
-                IDataReader dr = cmd.ExecuteReader();
-                dr.Read();
-                matricule = Convert.ToInt32(dr[0]) + 1;
-                dr.Close();
+                object result = cmd.ExecuteScalar();
+                matricule = Convert.ToInt32(result) + 11;
 
                 requete = "SELECT code FROM Grade WHERE libelle = @libelle";
                 cmd = new SQLiteCommand(requete, Connexion.Connec);
                 cmd.Parameters.AddWithValue("@libelle", cboGrade.Text);
-                dr = cmd.ExecuteReader();
+                IDataReader dr = cmd.ExecuteReader();
                 dr.Read();
                 string codeGrade = dr[0].ToString();
                 dr.Close();
@@ -62,11 +68,57 @@ namespace PimPomBro
                 cmd.Parameters.AddWithValue("@dateNaissance", dtpNaissance.Value.ToString());
                 cmd.Parameters.AddWithValue("@type", rdbProfessionnel.Checked ? "p" : "v" );
                 cmd.Parameters.AddWithValue("@portable", txtPortable.Text);
-                cmd.Parameters.AddWithValue("@bip", (txtBip.Text != "") ? matricule : Convert.ToInt32(txtBip.Text));
+                cmd.Parameters.AddWithValue("@bip", (txtBip.TextLength == 0) ? matricule : Convert.ToInt32(txtBip.Text));
                 cmd.Parameters.AddWithValue("@enMission", 0);
                 cmd.Parameters.AddWithValue("@enConge", 0);
                 cmd.Parameters.AddWithValue("@codeGrade", codeGrade);
                 cmd.Parameters.AddWithValue("@dateEmbauche", dtpEmbauche.Value.ToString());
+                cmd.ExecuteNonQuery();
+
+                requete = "INSERT INTO Affectation VALUES (@matricule, @dateA, '', @caserne)";
+                cmd = new SQLiteCommand(requete, Connexion.Connec);
+                cmd.Parameters.AddWithValue("@matricule", matricule);
+                cmd.Parameters.AddWithValue("@dateA", dtpEmbauche.Value.ToString());
+                cmd.Parameters.AddWithValue("@caserne", cboCaserneDeRattachement.SelectedValue);
+                cmd.ExecuteNonQuery();
+
+
+
+                foreach (object o in clbHab.CheckedItems)
+                {
+                    String date;
+
+                    dateHabilitation dateHab = new dateHabilitation(o.ToString());
+                    if (dateHab.ShowDialog() == DialogResult.OK)
+                    {
+                        date = dateHab.date;                        
+                    }
+                    else
+                    {
+                        date = dtpEmbauche.Value.ToString();
+                    }
+                    requete = "SELECT id FROM Habilitation WHERE libelle = @libelle";
+                    cmd = new SQLiteCommand(requete, Connexion.Connec);
+                    cmd.Parameters.AddWithValue("@libelle", o.ToString());
+                    dr = cmd.ExecuteReader();
+                    int idHab;
+                    dr.Read();
+                    //if (dr.Read()) { 
+                        idHab = Convert.ToInt32(dr["id"]); 
+                    //}
+
+                    requete = "INSERT INTO Passer VALUES (@matricule, @hab, @date)";
+                    cmd = new SQLiteCommand(requete, Connexion.Connec);
+                    cmd.Parameters.AddWithValue("@matricule", matricule);
+                    cmd.Parameters.AddWithValue("@hab", idHab);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.ExecuteNonQuery();
+                }
+
+                MesDatas.refreshTable("Pompier");
+                MesDatas.refreshTable("Affectation");
+
+                this.Close();
             }
             catch (Exception ex)
             {

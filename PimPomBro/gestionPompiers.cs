@@ -33,7 +33,7 @@ namespace PimPomBro
 
             cboCaserneDeRattachement.DisplayMember = "nom";
             cboCaserneDeRattachement.ValueMember = "id";
-            cboCaserneDeRattachement.DataSource = MesDatas.DsGlobal.Tables["Caserne"];
+            cboCaserneDeRattachement.DataSource = MesDatas.DsGlobal.Tables["Caserne"].Copy();
 
             cboGrade.DisplayMember = "libelle";
             cboGrade.ValueMember = "code";
@@ -147,12 +147,13 @@ namespace PimPomBro
 
 
             lstHabilitations.Items.Clear();
-            requete = "SELECT h.libelle FROM Passer p JOIN Habilitation h ON p.idHabilitation = h.id WHERE p.matriculePompier = @matricule";
+            requete = "SELECT h.libelle,p.dateObtention FROM Passer p JOIN Habilitation h ON p.idHabilitation = h.id WHERE p.matriculePompier = @matricule";
             cmd = new SQLiteCommand(requete, Connexion.Connec);
             cmd.Parameters.AddWithValue("@matricule", matricule);
             reader = cmd.ExecuteReader();
             while (reader.Read()) {
-                lstHabilitations.Items.Add(reader["libelle"]);
+                DateTime date = DateTime.Parse(reader["dateObtention"].ToString());
+                lstHabilitations.Items.Add(date.ToString("dd/MM/yyyy") + " - " + reader["libelle"]);
             }
 
             requete = "SELECT a.dateA,a.dateFin,c.nom FROM Affectation a JOIN Caserne c ON a.idCaserne = c.id WHERE matriculePompier = @matricule AND dateFin IS NOT NULL";
@@ -162,9 +163,18 @@ namespace PimPomBro
             while (reader.Read())
             {
                 string caserne = reader["nom"].ToString();
-                string dateA = reader["dateA"].ToString();
-                string dateFin = reader["dateFin"].ToString();
-                lstAffectations.Items.Add(caserne + " : " + dateA + " - " + dateFin);
+                DateTime dA = DateTime.Parse(reader["dateA"].ToString());
+                string dateA = dA.ToString("dd/MM/yyyy");
+                DateTime dF;
+                if (DateTime.TryParse(reader["dateFin"].ToString(), out dF))
+                {
+                    string dateFin = dF.ToString("dd/MM/yyyy");
+                    lstAffectations.Items.Add(caserne + " : " + dateA + " - " + dateFin + "\n");
+                }
+                else
+                {
+                    lstAffectations.Items.Add(caserne + " : " + dateA + "\n");
+                }
             }
 
 
@@ -199,6 +209,20 @@ namespace PimPomBro
                     cmd.Parameters.AddWithValue("@matricule", matricule);
                     cmd.Parameters.AddWithValue("@enConge", (chkConge.Checked) ? 1 : 0);
                     cmd.ExecuteNonQuery();
+
+                    requete = "UPDATE Affectation SET dateFin = @dateFin WHERE matriculePompier = @matricule AND (dateFin IS NULL or dateFin = '')";
+                    cmd = new SQLiteCommand(requete, Connexion.Connec, tran);
+                    cmd.Parameters.AddWithValue("@matricule", matricule);
+                    cmd.Parameters.AddWithValue("@dateFin", DateTime.Now);
+                    cmd.ExecuteNonQuery();
+
+                    requete = "INSERT INTO Affectation VALUES (@matricule, @dateA, NULL,@caserne)";
+                    cmd = new SQLiteCommand(requete, Connexion.Connec, tran);
+                    cmd.Parameters.AddWithValue("@matricule", matricule);
+                    cmd.Parameters.AddWithValue("@dateA", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@caserne", cboCaserneDeRattachement.SelectedValue);
+                    cmd.ExecuteNonQuery();
+
                     tran.Commit();
                 }
                 catch (Exception ex)
@@ -209,6 +233,7 @@ namespace PimPomBro
                 }
             }
             MesDatas.refreshTable("Pompier");
+            MesDatas.refreshTable("Affectation");
         }
 
         private void cboGrade_SelectedIndexChanged(object sender, EventArgs e)
@@ -241,8 +266,8 @@ namespace PimPomBro
         {
             CreationPompier creationPompier = new CreationPompier();
             creationPompier.ShowDialog();
-            MesDatas.refreshTable("Pompier");
-            MesDatas.refreshTable("Affectation");
+
+            this.gestionPompiers_Load(sender, e);
         }
     }
 }

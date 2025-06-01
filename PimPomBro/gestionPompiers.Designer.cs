@@ -126,6 +126,7 @@
             this.picNouveau.Size = new System.Drawing.Size(161, 184);
             this.picNouveau.TabIndex = 3;
             this.picNouveau.TabStop = false;
+            this.picNouveau.Click += new System.EventHandler(this.btnNouveau_Click);
             // 
             // btnNouveau
             // 
@@ -224,9 +225,9 @@
             // 
             this.lstHabilitations.FormattingEnabled = true;
             this.lstHabilitations.ItemHeight = 20;
-            this.lstHabilitations.Location = new System.Drawing.Point(123, 88);
+            this.lstHabilitations.Location = new System.Drawing.Point(9, 91);
             this.lstHabilitations.Name = "lstHabilitations";
-            this.lstHabilitations.Size = new System.Drawing.Size(361, 104);
+            this.lstHabilitations.Size = new System.Drawing.Size(477, 104);
             this.lstHabilitations.TabIndex = 15;
             // 
             // label9
@@ -263,7 +264,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(6, 88);
+            this.label12.Location = new System.Drawing.Point(6, 70);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(111, 18);
             this.label12.TabIndex = 10;
