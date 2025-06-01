@@ -13,7 +13,8 @@ namespace PimPomBro
 {
     public partial class gestionPompiers : Form
     {
-        bool admin = true; // A CHANGER A FALSE, TRUE JUSTE POUR EVITER DE LOGIN A CHAQUE TEST /!\
+        // mettre true pour bypass le test de login (login = "vrichard", mdp = "mdpVero")
+        bool admin = false; 
         private int matricule = -1;
         string requete = "";
         SQLiteCommand cmd = null;
@@ -55,8 +56,6 @@ namespace PimPomBro
         {
             lblConsigne.Text = "Veuillez selectionner un pompier.";
             cboPompier.Text = "choisir pompier";
-            cboPompier.SelectedIndex = -1;
-            cboPompier.Select();
 
             if (cboCaserne.SelectedItem == null) { return; }
             int idCaserne = Convert.ToInt32(cboCaserne.SelectedValue);
@@ -67,14 +66,14 @@ namespace PimPomBro
             List<int> listeMatricules = new List<int>();
             foreach (DataRow rowAff in tableAffectation.Rows)
             {
-                if (Convert.ToInt32(rowAff["idCaserne"]) == idCaserne)
+                if (rowAff["DateFin"].ToString() == "" && Convert.ToInt32(rowAff["idCaserne"]) == idCaserne)
                 {
                     listeMatricules.Add(Convert.ToInt32(rowAff["matriculePompier"]));
                 }
             }
 
             string filter = "matricule IN (" + string.Join(",", listeMatricules) + ")";
-            DataView dv = new DataView(tablePompiers, filter, null, DataViewRowState.CurrentRows);
+            DataView dv = new DataView(tablePompiers, filter, "nom ASC, prenom ASC", DataViewRowState.CurrentRows);
 
             cboPompier.ValueMember = "matricule";
             cboPompier.DataSource = dv;
@@ -89,6 +88,9 @@ namespace PimPomBro
             };
 
             pnlPompier.Visible = false;
+            //cboPompier.Text = "";
+            cboPompier.SelectedIndex = -1;
+            cboPompier.Select();
         }
 
         private void cboPompier_SelectedIndexChanged(object sender, EventArgs e)
@@ -156,7 +158,8 @@ namespace PimPomBro
                 lstHabilitations.Items.Add(date.ToString("dd/MM/yyyy") + " - " + reader["libelle"]);
             }
 
-            requete = "SELECT a.dateA,a.dateFin,c.nom FROM Affectation a JOIN Caserne c ON a.idCaserne = c.id WHERE matriculePompier = @matricule AND dateFin IS NOT NULL";
+            lstAffectations.Items.Clear();
+            requete = "SELECT a.dateA,a.dateFin,c.nom FROM Affectation a JOIN Caserne c ON a.idCaserne = c.id WHERE a.matriculePompier = @matricule AND a.dateFin IS NOT NULL";
             cmd = new SQLiteCommand(requete, Connexion.Connec);
             cmd.Parameters.AddWithValue("@matricule", matricule);
             reader = cmd.ExecuteReader();
@@ -165,16 +168,9 @@ namespace PimPomBro
                 string caserne = reader["nom"].ToString();
                 DateTime dA = DateTime.Parse(reader["dateA"].ToString());
                 string dateA = dA.ToString("dd/MM/yyyy");
-                DateTime dF;
-                if (DateTime.TryParse(reader["dateFin"].ToString(), out dF))
-                {
-                    string dateFin = dF.ToString("dd/MM/yyyy");
-                    lstAffectations.Items.Add(caserne + " : " + dateA + " - " + dateFin + "\n");
-                }
-                else
-                {
-                    lstAffectations.Items.Add(caserne + " : " + dateA + "\n");
-                }
+                DateTime dF = DateTime.Parse(reader["dateFin"].ToString());
+                string dateFin = dF.ToString("dd/MM/yyyy");
+                lstAffectations.Items.Add(caserne + " : " + dateA + " - " + dateFin);
             }
 
 
@@ -234,6 +230,9 @@ namespace PimPomBro
             }
             MesDatas.refreshTable("Pompier");
             MesDatas.refreshTable("Affectation");
+
+            this.gestionPompiers_Load(sender, e);
+            this.cboCaserne_SelectedIndexChanged(sender, e);
         }
 
         private void cboGrade_SelectedIndexChanged(object sender, EventArgs e)
@@ -268,6 +267,7 @@ namespace PimPomBro
             creationPompier.ShowDialog();
 
             this.gestionPompiers_Load(sender, e);
+            this.cboCaserne_SelectedIndexChanged(sender, e);
         }
     }
 }

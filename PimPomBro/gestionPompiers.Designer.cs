@@ -44,7 +44,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lstHabilitations = new System.Windows.Forms.ListBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.lstAffectations = new System.Windows.Forms.ListView();
             this.cboCaserneDeRattachement = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -75,6 +74,7 @@
             this.lblMatricule = new System.Windows.Forms.Label();
             this.lbl14 = new System.Windows.Forms.Label();
             this.lblConsigne = new System.Windows.Forms.Label();
+            this.lstAffectations = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
             this.pnlInformationsDetaillees.SuspendLayout();
@@ -207,9 +207,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lstAffectations);
             this.groupBox1.Controls.Add(this.lstHabilitations);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.lstAffectations);
             this.groupBox1.Controls.Add(this.cboCaserneDeRattachement);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label13);
@@ -239,17 +239,6 @@
             this.label9.Size = new System.Drawing.Size(166, 18);
             this.label9.TabIndex = 14;
             this.label9.Text = "Affectation passées :";
-            // 
-            // lstAffectations
-            // 
-            this.lstAffectations.GridLines = true;
-            this.lstAffectations.HideSelection = false;
-            this.lstAffectations.LabelWrap = false;
-            this.lstAffectations.Location = new System.Drawing.Point(9, 244);
-            this.lstAffectations.Name = "lstAffectations";
-            this.lstAffectations.Size = new System.Drawing.Size(475, 97);
-            this.lstAffectations.TabIndex = 13;
-            this.lstAffectations.UseCompatibleStateImageBehavior = false;
             // 
             // cboCaserneDeRattachement
             // 
@@ -583,6 +572,15 @@
             this.lblConsigne.TabIndex = 2;
             this.lblConsigne.Text = "Veuillez selectionnez une caserne.";
             // 
+            // lstAffectations
+            // 
+            this.lstAffectations.FormattingEnabled = true;
+            this.lstAffectations.ItemHeight = 20;
+            this.lstAffectations.Location = new System.Drawing.Point(9, 238);
+            this.lstAffectations.Name = "lstAffectations";
+            this.lstAffectations.Size = new System.Drawing.Size(475, 104);
+            this.lstAffectations.TabIndex = 16;
+            // 
             // gestionPompiers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -654,10 +652,10 @@
         private System.Windows.Forms.Label lblConsigne;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ListView lstAffectations;
         private System.Windows.Forms.CheckBox chkConge;
         private System.Windows.Forms.Button btnAppliquerModif;
         private System.Windows.Forms.Button btnAnnuler;
         private System.Windows.Forms.ListBox lstHabilitations;
+        private System.Windows.Forms.ListBox lstAffectations;
     }
 }
