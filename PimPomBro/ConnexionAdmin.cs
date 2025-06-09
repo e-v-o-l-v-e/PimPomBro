@@ -37,13 +37,17 @@ namespace PimPomBro
                 {
                     admin = false;
                     MessageBox.Show("Le login et/ou le mot de passe est erroné.");
-                    // this.DialogResult = DialogResult.Cancel;
+                    txtMDP.Text = "";
+                    txtLogin.Select();
+                    txtLogin.SelectAll();
                 }
             } catch
             {
                 admin = false;
                 MessageBox.Show("Le login et/ou le mot de passe est erroné.");
-                // this.DialogResult = DialogResult.Cancel;
+                txtMDP.Text = "";
+                txtLogin.Select();
+                txtLogin.SelectAll();
             }
         }
 
@@ -52,6 +56,14 @@ namespace PimPomBro
             if (e.KeyCode == Keys.Enter)
             {
                 btnSeConnecter_Click(sender, e);
+            }
+        }
+
+        private void txtLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtMDP.Select();
             }
         }
     }

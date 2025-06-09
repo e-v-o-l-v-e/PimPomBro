@@ -263,6 +263,11 @@ namespace PimPomBro
 
         private void btnNouveau_Click(object sender, EventArgs e)
         {
+            // si l'utilisateur n'est pas admin on lui demande de ce connecter
+            if (!admin) { connexionAdmin(); }
+            // s'il n'est toujours pas connecté on quitte la fonction
+            if (!admin) { return; }
+
             CreationPompier creationPompier = new CreationPompier();
             creationPompier.ShowDialog();
 

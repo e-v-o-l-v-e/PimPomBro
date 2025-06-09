@@ -44,6 +44,12 @@ namespace PimPomBro
         {
             int matricule;
 
+            string nom = txtNom.Text;
+            string prenom = txtPrenom.Text;
+            string portable = txtPortable.Text;
+            if (nom.Length < 1) { }
+
+
             try
             {
                 string requete = "SELECT MAX(matricule) FROM Pompier";
@@ -103,9 +109,7 @@ namespace PimPomBro
                     dr = cmd.ExecuteReader();
                     int idHab;
                     dr.Read();
-                    //if (dr.Read()) { 
-                        idHab = Convert.ToInt32(dr["id"]); 
-                    //}
+                    idHab = Convert.ToInt32(dr["id"]);
 
                     requete = "INSERT INTO Passer VALUES (@matricule, @hab, @date)";
                     cmd = new SQLiteCommand(requete, Connexion.Connec);
