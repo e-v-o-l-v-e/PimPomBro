@@ -33,7 +33,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.picNouveau = new System.Windows.Forms.PictureBox();
             this.btnNouveau = new System.Windows.Forms.Button();
             this.cboPompier = new System.Windows.Forms.ComboBox();
             this.cboCaserne = new System.Windows.Forms.ComboBox();
@@ -42,6 +41,7 @@
             this.btnAnnuler = new System.Windows.Forms.Button();
             this.chkConge = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lstAffectations = new System.Windows.Forms.ListBox();
             this.lstHabilitations = new System.Windows.Forms.ListBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cboCaserneDeRattachement = new System.Windows.Forms.ComboBox();
@@ -74,14 +74,14 @@
             this.lblMatricule = new System.Windows.Forms.Label();
             this.lbl14 = new System.Windows.Forms.Label();
             this.lblConsigne = new System.Windows.Forms.Label();
-            this.lstAffectations = new System.Windows.Forms.ListBox();
+            this.picNouveau = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
             this.pnlInformationsDetaillees.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.pnlPompier.SuspendLayout();
             this.panel3.SuspendLayout();
             this.gboCarriere.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -102,7 +102,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(118, 165);
+            this.label14.Location = new System.Drawing.Point(119, 261);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(91, 25);
             this.label14.TabIndex = 5;
@@ -112,21 +112,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(118, 73);
+            this.label11.Location = new System.Drawing.Point(119, 134);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(93, 25);
             this.label11.TabIndex = 4;
             this.label11.Text = "Caserne";
-            // 
-            // picNouveau
-            // 
-            this.picNouveau.Image = ((System.Drawing.Image)(resources.GetObject("picNouveau.Image")));
-            this.picNouveau.Location = new System.Drawing.Point(74, 451);
-            this.picNouveau.Name = "picNouveau";
-            this.picNouveau.Size = new System.Drawing.Size(161, 184);
-            this.picNouveau.TabIndex = 3;
-            this.picNouveau.TabStop = false;
-            this.picNouveau.Click += new System.EventHandler(this.btnNouveau_Click);
             // 
             // btnNouveau
             // 
@@ -143,7 +133,7 @@
             // 
             this.cboPompier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPompier.FormattingEnabled = true;
-            this.cboPompier.Location = new System.Drawing.Point(29, 193);
+            this.cboPompier.Location = new System.Drawing.Point(30, 289);
             this.cboPompier.Name = "cboPompier";
             this.cboPompier.Size = new System.Drawing.Size(265, 28);
             this.cboPompier.TabIndex = 1;
@@ -154,7 +144,7 @@
             // 
             this.cboCaserne.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCaserne.FormattingEnabled = true;
-            this.cboCaserne.Location = new System.Drawing.Point(29, 102);
+            this.cboCaserne.Location = new System.Drawing.Point(30, 163);
             this.cboCaserne.Name = "cboCaserne";
             this.cboCaserne.Size = new System.Drawing.Size(265, 28);
             this.cboCaserne.TabIndex = 0;
@@ -220,6 +210,15 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations carrière";
+            // 
+            // lstAffectations
+            // 
+            this.lstAffectations.FormattingEnabled = true;
+            this.lstAffectations.ItemHeight = 20;
+            this.lstAffectations.Location = new System.Drawing.Point(9, 238);
+            this.lstAffectations.Name = "lstAffectations";
+            this.lstAffectations.Size = new System.Drawing.Size(475, 104);
+            this.lstAffectations.TabIndex = 16;
             // 
             // lstHabilitations
             // 
@@ -572,14 +571,15 @@
             this.lblConsigne.TabIndex = 2;
             this.lblConsigne.Text = "Veuillez selectionnez une caserne.";
             // 
-            // lstAffectations
+            // picNouveau
             // 
-            this.lstAffectations.FormattingEnabled = true;
-            this.lstAffectations.ItemHeight = 20;
-            this.lstAffectations.Location = new System.Drawing.Point(9, 238);
-            this.lstAffectations.Name = "lstAffectations";
-            this.lstAffectations.Size = new System.Drawing.Size(475, 104);
-            this.lstAffectations.TabIndex = 16;
+            this.picNouveau.Image = ((System.Drawing.Image)(resources.GetObject("picNouveau.Image")));
+            this.picNouveau.Location = new System.Drawing.Point(74, 451);
+            this.picNouveau.Name = "picNouveau";
+            this.picNouveau.Size = new System.Drawing.Size(161, 184);
+            this.picNouveau.TabIndex = 3;
+            this.picNouveau.TabStop = false;
+            this.picNouveau.Click += new System.EventHandler(this.btnNouveau_Click);
             // 
             // gestionPompiers
             // 
@@ -595,7 +595,6 @@
             this.Load += new System.EventHandler(this.gestionPompiers_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).EndInit();
             this.pnlInformationsDetaillees.ResumeLayout(false);
             this.pnlInformationsDetaillees.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -605,6 +604,7 @@
             this.panel3.PerformLayout();
             this.gboCarriere.ResumeLayout(false);
             this.gboCarriere.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

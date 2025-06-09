@@ -31,8 +31,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.txtBip = new System.Windows.Forms.TextBox();
-            this.rdbFemelle = new System.Windows.Forms.RadioButton();
-            this.rdbMale = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtPortable = new System.Windows.Forms.TextBox();
@@ -43,8 +41,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.cboGrade = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.rdbVolontaire = new System.Windows.Forms.RadioButton();
-            this.rdbProfessionnel = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpEmbauche = new System.Windows.Forms.DateTimePicker();
@@ -55,15 +51,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtPrenom = new System.Windows.Forms.TextBox();
             this.txtNom = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdbFemelle = new System.Windows.Forms.RadioButton();
+            this.rdbMale = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rdbVolontaire = new System.Windows.Forms.RadioButton();
+            this.rdbProfessionnel = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.txtBip);
-            this.panel1.Controls.Add(this.rdbFemelle);
-            this.panel1.Controls.Add(this.rdbMale);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.txtPortable);
@@ -74,8 +78,6 @@
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.cboGrade);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.rdbVolontaire);
-            this.panel1.Controls.Add(this.rdbProfessionnel);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.dtpEmbauche);
@@ -109,31 +111,7 @@
             this.txtBip.Name = "txtBip";
             this.txtBip.Size = new System.Drawing.Size(196, 26);
             this.txtBip.TabIndex = 49;
-            // 
-            // rdbFemelle
-            // 
-            this.rdbFemelle.AutoSize = true;
-            this.rdbFemelle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbFemelle.ForeColor = System.Drawing.Color.AliceBlue;
-            this.rdbFemelle.Location = new System.Drawing.Point(232, 191);
-            this.rdbFemelle.Name = "rdbFemelle";
-            this.rdbFemelle.Size = new System.Drawing.Size(85, 24);
-            this.rdbFemelle.TabIndex = 48;
-            this.rdbFemelle.Text = "femelle";
-            this.rdbFemelle.UseVisualStyleBackColor = true;
-            // 
-            // rdbMale
-            // 
-            this.rdbMale.AutoSize = true;
-            this.rdbMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbMale.ForeColor = System.Drawing.Color.AliceBlue;
-            this.rdbMale.Location = new System.Drawing.Point(336, 191);
-            this.rdbMale.Name = "rdbMale";
-            this.rdbMale.Size = new System.Drawing.Size(65, 24);
-            this.rdbMale.TabIndex = 47;
-            this.rdbMale.TabStop = true;
-            this.rdbMale.Text = "male";
-            this.rdbMale.UseVisualStyleBackColor = true;
+            this.txtBip.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPortable_KeyPress);
             // 
             // label10
             // 
@@ -164,6 +142,7 @@
             this.txtPortable.Name = "txtPortable";
             this.txtPortable.Size = new System.Drawing.Size(196, 26);
             this.txtPortable.TabIndex = 44;
+            this.txtPortable.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPortable_KeyPress);
             // 
             // btnValider
             // 
@@ -236,33 +215,6 @@
             this.label7.Size = new System.Drawing.Size(69, 20);
             this.label7.TabIndex = 37;
             this.label7.Text = "Grade :";
-            // 
-            // rdbVolontaire
-            // 
-            this.rdbVolontaire.AutoSize = true;
-            this.rdbVolontaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbVolontaire.ForeColor = System.Drawing.Color.AliceBlue;
-            this.rdbVolontaire.Location = new System.Drawing.Point(222, 414);
-            this.rdbVolontaire.Name = "rdbVolontaire";
-            this.rdbVolontaire.Size = new System.Drawing.Size(109, 24);
-            this.rdbVolontaire.TabIndex = 36;
-            this.rdbVolontaire.TabStop = true;
-            this.rdbVolontaire.Text = "Volontaire";
-            this.rdbVolontaire.UseVisualStyleBackColor = true;
-            // 
-            // rdbProfessionnel
-            // 
-            this.rdbProfessionnel.AutoSize = true;
-            this.rdbProfessionnel.Checked = true;
-            this.rdbProfessionnel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbProfessionnel.ForeColor = System.Drawing.Color.AliceBlue;
-            this.rdbProfessionnel.Location = new System.Drawing.Point(219, 384);
-            this.rdbProfessionnel.Name = "rdbProfessionnel";
-            this.rdbProfessionnel.Size = new System.Drawing.Size(136, 24);
-            this.rdbProfessionnel.TabIndex = 35;
-            this.rdbProfessionnel.TabStop = true;
-            this.rdbProfessionnel.Text = "Professionnel";
-            this.rdbProfessionnel.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -360,6 +312,74 @@
             this.txtNom.Size = new System.Drawing.Size(196, 26);
             this.txtNom.TabIndex = 25;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rdbFemelle);
+            this.groupBox1.Controls.Add(this.rdbMale);
+            this.groupBox1.Location = new System.Drawing.Point(219, 177);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(178, 40);
+            this.groupBox1.TabIndex = 51;
+            this.groupBox1.TabStop = false;
+            // 
+            // rdbFemelle
+            // 
+            this.rdbFemelle.AutoSize = true;
+            this.rdbFemelle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbFemelle.ForeColor = System.Drawing.Color.AliceBlue;
+            this.rdbFemelle.Location = new System.Drawing.Point(6, 13);
+            this.rdbFemelle.Name = "rdbFemelle";
+            this.rdbFemelle.Size = new System.Drawing.Size(85, 24);
+            this.rdbFemelle.TabIndex = 50;
+            this.rdbFemelle.Text = "femelle";
+            this.rdbFemelle.UseVisualStyleBackColor = true;
+            // 
+            // rdbMale
+            // 
+            this.rdbMale.AutoSize = true;
+            this.rdbMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbMale.ForeColor = System.Drawing.Color.AliceBlue;
+            this.rdbMale.Location = new System.Drawing.Point(110, 13);
+            this.rdbMale.Name = "rdbMale";
+            this.rdbMale.Size = new System.Drawing.Size(65, 24);
+            this.rdbMale.TabIndex = 49;
+            this.rdbMale.Text = "male";
+            this.rdbMale.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.rdbVolontaire);
+            this.groupBox2.Controls.Add(this.rdbProfessionnel);
+            this.groupBox2.Location = new System.Drawing.Point(215, 384);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(151, 73);
+            this.groupBox2.TabIndex = 52;
+            this.groupBox2.TabStop = false;
+            // 
+            // rdbVolontaire
+            // 
+            this.rdbVolontaire.AutoSize = true;
+            this.rdbVolontaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbVolontaire.ForeColor = System.Drawing.Color.AliceBlue;
+            this.rdbVolontaire.Location = new System.Drawing.Point(6, 40);
+            this.rdbVolontaire.Name = "rdbVolontaire";
+            this.rdbVolontaire.Size = new System.Drawing.Size(109, 24);
+            this.rdbVolontaire.TabIndex = 38;
+            this.rdbVolontaire.Text = "Volontaire";
+            this.rdbVolontaire.UseVisualStyleBackColor = true;
+            // 
+            // rdbProfessionnel
+            // 
+            this.rdbProfessionnel.AutoSize = true;
+            this.rdbProfessionnel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbProfessionnel.ForeColor = System.Drawing.Color.AliceBlue;
+            this.rdbProfessionnel.Location = new System.Drawing.Point(6, 10);
+            this.rdbProfessionnel.Name = "rdbProfessionnel";
+            this.rdbProfessionnel.Size = new System.Drawing.Size(136, 24);
+            this.rdbProfessionnel.TabIndex = 37;
+            this.rdbProfessionnel.Text = "Professionnel";
+            this.rdbProfessionnel.UseVisualStyleBackColor = true;
+            // 
             // CreationPompier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,6 +392,10 @@
             this.Load += new System.EventHandler(this.CreationPompier_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -386,8 +410,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cboGrade;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RadioButton rdbVolontaire;
-        private System.Windows.Forms.RadioButton rdbProfessionnel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dtpEmbauche;
@@ -398,12 +420,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPrenom;
         private System.Windows.Forms.TextBox txtNom;
-        private System.Windows.Forms.RadioButton rdbFemelle;
-        private System.Windows.Forms.RadioButton rdbMale;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtPortable;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtBip;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton rdbVolontaire;
+        private System.Windows.Forms.RadioButton rdbProfessionnel;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdbFemelle;
+        private System.Windows.Forms.RadioButton rdbMale;
     }
 }

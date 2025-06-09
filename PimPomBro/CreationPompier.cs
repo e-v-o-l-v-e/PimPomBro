@@ -25,6 +25,7 @@ namespace PimPomBro
             cboCaserneDeRattachement.DataSource = MesDatas.DsGlobal.Tables["Caserne"];
 
             rdbProfessionnel.Checked = true;
+            rdbMale.Checked = true;
 
 
             cboGrade.DisplayMember = "libelle";
@@ -47,7 +48,34 @@ namespace PimPomBro
             string nom = txtNom.Text;
             string prenom = txtPrenom.Text;
             string portable = txtPortable.Text;
-            if (nom.Length < 1) { }
+
+            string mauvaiseCompletion = "";
+
+            if (nom.Length < 2) {
+                mauvaiseCompletion += "Le nom doit faire au moins 2 characteres\n";
+            }
+            if (prenom.Length < 2)
+            {
+                mauvaiseCompletion += "Le prenom doit faire au moins 2 characteres\n";
+            }
+            if (portable.Length != 10)
+            {
+                mauvaiseCompletion += "Le numero de portable doit etre composé de 10 numéro\n";
+            }
+            if (cboCaserneDeRattachement.SelectedIndex == -1)
+            {
+                mauvaiseCompletion += "Vous devez selectionner une caserne\n";
+            }
+            if (cboGrade.SelectedIndex == -1)
+            {
+                mauvaiseCompletion += "Vous devez selectionner un grade\n";
+            }
+
+            if (mauvaiseCompletion.Length > 2)
+            {
+                MessageBox.Show(mauvaiseCompletion);
+                return;
+            }
 
 
             try
@@ -130,5 +158,14 @@ namespace PimPomBro
             }
 
         }
+
+        private void txtPortable_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // on ignore la touche si ce n'est pas un chiffre
+            }
+        }
+
     }
 }
