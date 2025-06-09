@@ -51,6 +51,7 @@ namespace PimPomBro
 
             string mauvaiseCompletion = "";
 
+            // on verifie que l'utilisateur remplis bien tous les champs
             if (nom.Length < 2) {
                 mauvaiseCompletion += "Le nom doit faire au moins 2 characteres\n";
             }
@@ -80,10 +81,11 @@ namespace PimPomBro
 
             try
             {
+                // on crée un nouveau matricule
                 string requete = "SELECT MAX(matricule) FROM Pompier";
                 SQLiteCommand cmd = new SQLiteCommand(requete, Connexion.Connec);
                 object result = cmd.ExecuteScalar();
-                matricule = Convert.ToInt32(result) + 11;
+                matricule = Convert.ToInt32(result) + 1;
 
                 requete = "SELECT code FROM Grade WHERE libelle = @libelle";
                 cmd = new SQLiteCommand(requete, Connexion.Connec);
@@ -122,6 +124,7 @@ namespace PimPomBro
                 {
                     String date;
 
+                    // on recupere les dates d'habilitation pour chaque habilitation cochée
                     dateHabilitation dateHab = new dateHabilitation(o.ToString());
                     if (dateHab.ShowDialog() == DialogResult.OK)
                     {
@@ -159,6 +162,7 @@ namespace PimPomBro
 
         }
 
+        // pour portable et bip on n'accepte que des numéros
         private void txtPortable_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))

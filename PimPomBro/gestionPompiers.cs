@@ -116,7 +116,6 @@ namespace PimPomBro
 
 
             // une fois qu'un pompier est sélectionné on met à jours toutes les informations
-
             matricule = Convert.ToInt32(cboPompier.SelectedValue);
             DataTable tablePompier = MesDatas.DsGlobal.Tables["Pompier"];
             DataRow rowPompier = tablePompier.Rows.Find(matricule);
@@ -189,7 +188,6 @@ namespace PimPomBro
                 lstAffectations.Items.Add(caserne + " : " + dateA + " - " + dateFin);
             }
 
-
             requete = "SELECT enConge FROM Pompier WHERE matricule = @matricule";
             cmd = new SQLiteCommand(requete, Connexion.Connec);
             cmd.Parameters.AddWithValue("@matricule", matricule);
@@ -249,7 +247,7 @@ namespace PimPomBro
             MesDatas.refreshTable("Affectation");
             
 
-            // puis un reload le formulaire pour récupérer le dataset à jours
+            // puis on reload le formulaire pour récupérer le dataset à jours
             this.gestionPompiers_Load(sender, e);
             this.cboCaserne_SelectedIndexChanged(sender, e);
         }

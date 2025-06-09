@@ -29,26 +29,26 @@ namespace PimPomBro
                 cmd.Parameters.AddWithValue("@login", txtLogin.Text);
                 IDataReader reader = cmd.ExecuteReader();
                 reader.Read();
-                if (txtMDP.Text == reader["mdp"].ToString())
-                {
+                if (txtMDP.Text == reader["mdp"].ToString()) {
                     admin = true;
                     this.DialogResult = DialogResult.OK;
                 } else
                 {
-                    admin = false;
-                    MessageBox.Show("Le login et/ou le mot de passe est erroné.");
-                    txtMDP.Text = "";
-                    txtLogin.Select();
-                    txtLogin.SelectAll();
+                    connexionRatee();
                 }
             } catch
             {
+                connexionRatee();
+            }
+        }
+
+        private void connexionRatee() {
                 admin = false;
                 MessageBox.Show("Le login et/ou le mot de passe est erroné.");
                 txtMDP.Text = "";
                 txtLogin.Select();
                 txtLogin.SelectAll();
-            }
+
         }
 
         private void txtMDP_KeyDown(object sender, KeyEventArgs e)
