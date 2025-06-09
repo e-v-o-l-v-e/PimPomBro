@@ -13,7 +13,7 @@ namespace PimPomBro
 {
     public partial class gestionPompiers : Form
     {
-        // mettre true pour bypass le test de login (login = "vrichard", mdp = "mdpVero")
+        // on peut initialiser à true pour bypass le test de login (login = "vrichard", mdp = "mdpVero")
         bool admin = false; 
         private int matricule = -1;
         string requete = "";
@@ -28,17 +28,19 @@ namespace PimPomBro
         private void gestionPompiers_Load(object sender, EventArgs e)
         {
 
+            // on affiche les 2 images
             picLogo.Image = Image.FromFile(@"../../Images/logo.png");
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picNouveau.Image = Image.FromFile(@"../../Images/jsp.jpg");
 
+            // on initialise les combobox des casernes, 
             cboCaserne.DisplayMember = "nom";
             cboCaserne.ValueMember = "id";
             cboCaserne.DataSource = MesDatas.DsGlobal.Tables["Caserne"];
-            // cboCaserne.SelectedIndex = -1;
 
             cboCaserneDeRattachement.DisplayMember = "nom";
             cboCaserneDeRattachement.ValueMember = "id";
+            // en utilisant une copie pour la seconde afin qu'elles ne soient pas synchronisées
             cboCaserneDeRattachement.DataSource = MesDatas.DsGlobal.Tables["Caserne"].Copy();
 
             cboGrade.DisplayMember = "libelle";
@@ -65,12 +67,15 @@ namespace PimPomBro
             if (cboCaserne.SelectedItem == null) { return; }
             int idCaserne = Convert.ToInt32(cboCaserne.SelectedValue);
 
+            // on récupère et affiche les pompiers de la caserne depuis la dataset global
             DataTable tablePompiers = MesDatas.DsGlobal.Tables["Pompier"];
             DataTable tableAffectation = MesDatas.DsGlobal.Tables["Affectation"];
 
             List<int> listeMatricules = new List<int>();
             foreach (DataRow rowAff in tableAffectation.Rows)
             {
+                // on vérifie que le pompier est bien affecté à l'heure actuelle dans la caserne
+                // (c'est à dire si la date de fin n'est pas définie)
                 if (rowAff["DateFin"].ToString() == "" && Convert.ToInt32(rowAff["idCaserne"]) == idCaserne)
                 {
                     listeMatricules.Add(Convert.ToInt32(rowAff["matriculePompier"]));
@@ -83,6 +88,7 @@ namespace PimPomBro
             cboPompier.ValueMember = "matricule";
             cboPompier.DataSource = dv;
 
+            // on affiche le nom ET le prénom des pompiers dans la combobox, bien que ce soit des colonnes différentes
             cboPompier.Format += (s, e2) =>
             {
                 DataRowView drv = e2.ListItem as DataRowView;
@@ -92,8 +98,8 @@ namespace PimPomBro
                 }
             };
 
+            // on cache le panel tant qu'on pompier n'est pas sélectionné
             pnlPompier.Visible = false;
-            //cboPompier.Text = "";
             cboPompier.SelectedIndex = -1;
             cboPompier.Select();
         }
@@ -102,14 +108,14 @@ namespace PimPomBro
         {
             if (cboPompier.SelectedItem == null || cboPompier.SelectedIndex == -1 || cboPompier.Text == "")
             {
-                // MessageBox.Show("null pompier"); 
                 return;
             }
-            // MessageBox.Show("good pompier"); 
 
             pnlInformationsDetaillees.Visible = false;
             cboGrade.Enabled = false;
 
+
+            // une fois qu'un pompier est sélectionné on met à jours toutes les informations
 
             matricule = Convert.ToInt32(cboPompier.SelectedValue);
             DataTable tablePompier = MesDatas.DsGlobal.Tables["Pompier"];
@@ -127,7 +133,10 @@ namespace PimPomBro
                 lblTelephone.Text = rowPompier["portable"].ToString();
                 lblBip.Text = rowPompier["bip"].ToString();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { 
+              lblTelephone.Text = "";
+              lblBip.Text = "";
+            }
 
             try
             {
@@ -143,6 +152,7 @@ namespace PimPomBro
                 cboGrade.Visible = false;
             }
 
+            // on affiche les informations une fois que tous à été initialisé
             pnlPompier.Visible = true;
         }
         private void btnModifications_Click(object sender, EventArgs e)
@@ -152,7 +162,7 @@ namespace PimPomBro
 
             cboCaserneDeRattachement.Text = cboCaserne.Text;
 
-
+            // on récupère la liste de toutes les habilitations
             lstHabilitations.Items.Clear();
             requete = "SELECT h.libelle,p.dateObtention FROM Passer p JOIN Habilitation h ON p.idHabilitation = h.id WHERE p.matriculePompier = @matricule";
             cmd = new SQLiteCommand(requete, Connexion.Connec);
@@ -163,6 +173,7 @@ namespace PimPomBro
                 lstHabilitations.Items.Add(date.ToString("dd/MM/yyyy") + " - " + reader["libelle"]);
             }
 
+            // on récupère la liste des affectations
             lstAffectations.Items.Clear();
             requete = "SELECT a.dateA,a.dateFin,c.nom FROM Affectation a JOIN Caserne c ON a.idCaserne = c.id WHERE a.matriculePompier = @matricule AND a.dateFin IS NOT NULL";
             cmd = new SQLiteCommand(requete, Connexion.Connec);
@@ -184,7 +195,6 @@ namespace PimPomBro
             cmd.Parameters.AddWithValue("@matricule", matricule);
             reader = cmd.ExecuteReader();
             reader.Read();
-            // MessageBox.Show(Convert.ToInt32(reader["enConge"]).ToString());
             if (Convert.ToInt32(reader["enConge"]) == 1)
             {
                 chkConge.Checked = true;
@@ -233,13 +243,18 @@ namespace PimPomBro
                     return;
                 }
             }
+
+            // après avoir modifié les tables dans la base de donnée on les mets à jours dans le dataset
             MesDatas.refreshTable("Pompier");
             MesDatas.refreshTable("Affectation");
+            
 
+            // puis un reload le formulaire pour récupérer le dataset à jours
             this.gestionPompiers_Load(sender, e);
             this.cboCaserne_SelectedIndexChanged(sender, e);
         }
 
+       // on met à jours le code du grade quand l'utilisateur en sélectionne un autre dans la combobox
         private void cboGrade_SelectedIndexChanged(object sender, EventArgs e)
         {
             requete = "SELECT code FROM Grade WHERE libelle = @libelle";
