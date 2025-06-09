@@ -76,6 +76,7 @@
             this.lblMatricule = new System.Windows.Forms.Label();
             this.lbl14 = new System.Windows.Forms.Label();
             this.lblConsigne = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
@@ -89,15 +90,16 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.picNouveau);
             this.panel1.Controls.Add(this.btnNouveau);
             this.panel1.Controls.Add(this.cboPompier);
             this.panel1.Controls.Add(this.cboCaserne);
-            this.panel1.Location = new System.Drawing.Point(13, 163);
+            this.panel1.Location = new System.Drawing.Point(13, 120);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(330, 693);
+            this.panel1.Size = new System.Drawing.Size(330, 736);
             this.panel1.TabIndex = 0;
             // 
             // label11
@@ -123,7 +125,7 @@
             // picNouveau
             // 
             this.picNouveau.Image = ((System.Drawing.Image)(resources.GetObject("picNouveau.Image")));
-            this.picNouveau.Location = new System.Drawing.Point(85, 348);
+            this.picNouveau.Location = new System.Drawing.Point(85, 326);
             this.picNouveau.Name = "picNouveau";
             this.picNouveau.Size = new System.Drawing.Size(161, 184);
             this.picNouveau.TabIndex = 3;
@@ -133,7 +135,7 @@
             // btnNouveau
             // 
             this.btnNouveau.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNouveau.Location = new System.Drawing.Point(85, 530);
+            this.btnNouveau.Location = new System.Drawing.Point(85, 508);
             this.btnNouveau.Name = "btnNouveau";
             this.btnNouveau.Size = new System.Drawing.Size(161, 87);
             this.btnNouveau.TabIndex = 2;
@@ -164,7 +166,7 @@
             // 
             // picLogo
             // 
-            this.picLogo.Location = new System.Drawing.Point(98, 3);
+            this.picLogo.Location = new System.Drawing.Point(99, -17);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(160, 154);
             this.picLogo.TabIndex = 6;
@@ -203,6 +205,7 @@
             this.btnAnnuler.TabIndex = 20;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = true;
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // chkConge
             // 
@@ -591,6 +594,17 @@
             this.lblConsigne.TabIndex = 2;
             this.lblConsigne.Text = "Veuillez selectionnez une caserne.";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(85, 659);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(161, 38);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "revenir au menu";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // gestionPompiers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -598,9 +612,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(925, 868);
             this.Controls.Add(this.pnlPompier);
-            this.Controls.Add(this.picLogo);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblConsigne);
+            this.Controls.Add(this.picLogo);
             this.Name = "gestionPompiers";
             this.Text = "Gestion du Personnel";
             this.Load += new System.EventHandler(this.gestionPompiers_Load);
@@ -670,5 +684,6 @@
         private System.Windows.Forms.ListBox lstHabilitations;
         private System.Windows.Forms.ListBox lstAffectations;
         private System.Windows.Forms.PictureBox picLogo;
+        private System.Windows.Forms.Button button1;
     }
 }

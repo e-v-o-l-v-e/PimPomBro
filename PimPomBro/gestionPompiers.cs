@@ -279,5 +279,16 @@ namespace PimPomBro
             this.gestionPompiers_Load(sender, e);
             this.cboCaserne_SelectedIndexChanged(sender, e);
         }
+
+        private void btnAnnuler_Click(object sender, EventArgs e)
+        {
+            cboPompier_SelectedIndexChanged(sender, e);
+            btnModifications_Click(sender, e);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
