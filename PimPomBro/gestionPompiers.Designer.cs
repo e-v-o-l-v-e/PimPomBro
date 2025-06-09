@@ -33,6 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.picNouveau = new System.Windows.Forms.PictureBox();
             this.btnNouveau = new System.Windows.Forms.Button();
             this.cboPompier = new System.Windows.Forms.ComboBox();
             this.cboCaserne = new System.Windows.Forms.ComboBox();
@@ -74,21 +75,23 @@
             this.lblMatricule = new System.Windows.Forms.Label();
             this.lbl14 = new System.Windows.Forms.Label();
             this.lblConsigne = new System.Windows.Forms.Label();
-            this.picNouveau = new System.Windows.Forms.PictureBox();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
             this.pnlInformationsDetaillees.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.pnlPompier.SuspendLayout();
             this.panel3.SuspendLayout();
             this.gboCarriere.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.picLogo);
+            this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.picNouveau);
             this.panel1.Controls.Add(this.btnNouveau);
             this.panel1.Controls.Add(this.cboPompier);
@@ -118,10 +121,20 @@
             this.label11.TabIndex = 4;
             this.label11.Text = "Caserne";
             // 
+            // picNouveau
+            // 
+            this.picNouveau.Image = ((System.Drawing.Image)(resources.GetObject("picNouveau.Image")));
+            this.picNouveau.Location = new System.Drawing.Point(84, 451);
+            this.picNouveau.Name = "picNouveau";
+            this.picNouveau.Size = new System.Drawing.Size(161, 184);
+            this.picNouveau.TabIndex = 3;
+            this.picNouveau.TabStop = false;
+            this.picNouveau.Click += new System.EventHandler(this.btnNouveau_Click);
+            // 
             // btnNouveau
             // 
             this.btnNouveau.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNouveau.Location = new System.Drawing.Point(74, 633);
+            this.btnNouveau.Location = new System.Drawing.Point(84, 633);
             this.btnNouveau.Name = "btnNouveau";
             this.btnNouveau.Size = new System.Drawing.Size(161, 87);
             this.btnNouveau.TabIndex = 2;
@@ -571,15 +584,13 @@
             this.lblConsigne.TabIndex = 2;
             this.lblConsigne.Text = "Veuillez selectionnez une caserne.";
             // 
-            // picNouveau
+            // picLogo
             // 
-            this.picNouveau.Image = ((System.Drawing.Image)(resources.GetObject("picNouveau.Image")));
-            this.picNouveau.Location = new System.Drawing.Point(74, 451);
-            this.picNouveau.Name = "picNouveau";
-            this.picNouveau.Size = new System.Drawing.Size(161, 184);
-            this.picNouveau.TabIndex = 3;
-            this.picNouveau.TabStop = false;
-            this.picNouveau.Click += new System.EventHandler(this.btnNouveau_Click);
+            this.picLogo.Location = new System.Drawing.Point(84, -23);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(160, 154);
+            this.picLogo.TabIndex = 6;
+            this.picLogo.TabStop = false;
             // 
             // gestionPompiers
             // 
@@ -595,6 +606,7 @@
             this.Load += new System.EventHandler(this.gestionPompiers_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).EndInit();
             this.pnlInformationsDetaillees.ResumeLayout(false);
             this.pnlInformationsDetaillees.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -604,7 +616,7 @@
             this.panel3.PerformLayout();
             this.gboCarriere.ResumeLayout(false);
             this.gboCarriere.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picNouveau)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -657,5 +669,6 @@
         private System.Windows.Forms.Button btnAnnuler;
         private System.Windows.Forms.ListBox lstHabilitations;
         private System.Windows.Forms.ListBox lstAffectations;
+        private System.Windows.Forms.PictureBox picLogo;
     }
 }

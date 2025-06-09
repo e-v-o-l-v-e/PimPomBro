@@ -27,6 +27,11 @@ namespace PimPomBro
 
         private void gestionPompiers_Load(object sender, EventArgs e)
         {
+
+            picLogo.Image = Image.FromFile(@"../../Images/logo.png");
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picNouveau.Image = Image.FromFile(@"../../Images/jsp.jpg");
+
             cboCaserne.DisplayMember = "nom";
             cboCaserne.ValueMember = "id";
             cboCaserne.DataSource = MesDatas.DsGlobal.Tables["Caserne"];
